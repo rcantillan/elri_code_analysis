@@ -1,2 +1,2 @@
-# elri_paper_01
-Repositorio de los códigos para el análisis de datos con encuesta ELRI
+# elri_code_analysis
+Repositorio de códigos para análisis con ELRI
