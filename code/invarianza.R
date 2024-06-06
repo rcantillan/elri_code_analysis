@@ -11,6 +11,7 @@ library(car)
 library(stringr)
 library(sjlabelled)
 library(sjmisc)
+library(here)
 
 # limpiar espacio
 cat("\014")
@@ -18,7 +19,7 @@ rm(list = ls())
 gc()
 
 # Load data
-load("/home/rober/Desktop/ELRI/BBDD_ELRI_LONG.RData")
+load(here("data/BBDD_ELRI_LONG.RData"))
 
 # Análisis 1
 # seleccionar datos ---------------------------------------------------------
