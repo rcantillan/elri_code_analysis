@@ -17,7 +17,7 @@ format:
             margin-bottom: 10px;
           }
           #title-block-header .title {
-            margin-left: 480px;  /* Ajusta esto según el tamaño de tu logo */
+            margin-left: 820px;  /* Ajusta esto según el tamaño de tu logo */
           }
           .quarto-title-block .quarto-title-banner {
             padding-left: 120px;
