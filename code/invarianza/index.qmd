@@ -1,6 +1,6 @@
 ---
-title: "Mi Documento con Logo"
-author: "Tu Nombre"
+title: "Documento de trabajo 1: Análisis de Invarianza"
+author: "Roberto Cantillan | Matías Deneken"
 date: today
 format:
   html:
