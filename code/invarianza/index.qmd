@@ -11,38 +11,26 @@ format:
     include-in-header:
       text: |
         <style>
-          .logo-title-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
+          body::before {
+            content: url('img/ciir_en-negro-vertical.jpg');
+            display: block;
+            text-align: center;
+            margin-bottom: 5px; /* Reducido a 5px para un espacio mínimo */
+            transform: scale(0.5);
           }
-          .logo-container {
-            margin-bottom: 5px;
-          }
-          .logo-container img {
+          body::before img {
             max-width: 100px;
             height: auto;
           }
-          .title-container {
-            text-align: center;
+          #title-block-header {
+            margin-top: 0; /* Eliminado el margen superior */
+          }
+          .quarto-title {
+            margin-top: 0; /* Asegura que no haya espacio extra arriba del título */
           }
         </style>
 editor: visual
 ---
-
-```{=html}
-<div class="logo-title-container">
-  <div class="logo-container">
-    <img src="img/ciir_en-negro-vertical.jpg" alt="Logo">
-  </div>
-  <div class="title-container">
-    <h1>{{< meta title >}}</h1>
-    <p>{{< meta author >}}</p>
-    <p>{{< meta date >}}</p>
-  </div>
-</div>
-```
 
 ## Introducción
 
