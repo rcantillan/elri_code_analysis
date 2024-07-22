@@ -36,19 +36,21 @@ ul.task-list li input[type="checkbox"] {
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <style>
-  body::before {
-    content: url('img/ciir_en-negro-vertical.jpg');
-    display: block;
-    text-align: center;
+  .logo-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
-    transform: scale(0.5); /* Reduce el tamaño del logo al 50% */
   }
-  body::before img {
-    max-width: 50px; /* Reducimos el tamaño máximo */
+  .logo-container {
+    margin-bottom: 5px;
+  }
+  .logo-container img {
+    max-width: 100px;
     height: auto;
   }
-  #title-block-header {
-    margin-top: 5px;
+  .title-container {
+    text-align: center;
   }
 </style>
 
@@ -98,6 +100,16 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="logo-title-container">
+  <div class="logo-container">
+    <img src="img/ciir_en-negro-vertical.jpg" alt="Logo">
+  </div>
+  <div class="title-container">
+    <h1>Mi Documento con Logo</h1>
+    <p>Tu Nombre</p>
+    <p>July 22, 2024</p>
+  </div>
+</div>
 <section id="introducción" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
 <p>Este es el contenido de tu documento…</p>
