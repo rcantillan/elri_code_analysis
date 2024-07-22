@@ -155,7 +155,6 @@ mean(x) # media
 var(x) # varianza
 ```
 
-
 ### Distribución normal estándar.
 
 Calculamos las probabilidades de la distribución normal estándar.
@@ -193,7 +192,6 @@ var(z) # varianza
 pnorm(6.92, mean=3, sd=2) - pnorm(-0.92, mean=3, sd=2)
 ```
 
-
 ### Parámetros poblacionales VS. estadísticas de muestra
 
 #### La ley de los grandes números.
@@ -222,7 +220,6 @@ mean(sample_1) # n=10
 mean(sample_2) # n=1,000 
 mean(sample_3) # n=1,000,000  
 ```
-
 
 ```{r}
 ## Ejemplo con una variable aleatoria normal 
@@ -332,7 +329,6 @@ for(i in 1:3){
   print(i) # imprimir en valor de i
 }
 ```
-
 
 Cambie el código que queremos que R ejecute repetidamente para que en cada iteración, R: (1) extrae una muestra aleatoria de 1000 observaciones de una variable binaria con p=0,5, y (2) calcula e imprime la media muestral
 
