@@ -1,26 +1,35 @@
 ---
-title: "Untitled"
-format: html
+title: "Mi Documento con Logo"
+author: "Tu Nombre"
+date: today
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    title-block-banner: true
+    title-block-banner-color: "#FFFFFF"
+    include-in-header:
+      text: |
+        <style>
+          #title-block-header {
+            margin-bottom: 20px;
+          }
+          #title-block-header .title {
+            margin-left: 120px;  /* Ajusta esto según el tamaño de tu logo */
+          }
+          .quarto-title-block .quarto-title-banner {
+            padding-left: 120px;
+            background-image: url('img/ciir_en-negro-vertical.jpg');
+            background-size: 100px auto;
+            background-position: left 10px center;
+            background-repeat: no-repeat;
+          }
+        </style>
 editor: visual
 ---
 
-## Quarto
+## Introducción
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+Este es el contenido de tu documento...
