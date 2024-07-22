@@ -31,6 +31,9 @@ format:
           }
         </style>
 editor: visual
+reference-location: margin
+citation-location: margin
+bibliography: PHQ9.bib
 ---
 
 ## Introducción
@@ -100,7 +103,7 @@ Estos modelos extienden los anteriores a situaciones donde tenemos múltiples gr
    - Además de la invarianza fuerte, requiere que las varianzas residuales ($\Theta_g$) sean iguales.
    - Es el nivel más estricto de invarianza, raramente alcanzado en la práctica.
 
-Estos niveles de invarianza son cruciales para asegurar que estamos midiendo los mismos constructos de la misma manera en diferentes grupos o momentos, permitiendo comparaciones significativas.
+Estos niveles de invarianza son cruciales para asegurar que estamos midiendo los mismos constructos de la misma manera en diferentes grupos o momentos, permitiendo comparaciones significativas. Los análisis que siguen los realizaremos utilizando la librería Lavaan diseñada para entorno R @rosseelLavaanLatentVariable2012
 
 
 ## Análisis Invarianza ELRI - PHQ9 
@@ -113,7 +116,7 @@ El Cuestionario de Salud del Paciente-9 (PHQ-9) es una herramienta ampliamente u
   -   Invarianza entre grupos: Comparación entre poblaciones indígenas y no indígenas.
   -   Invarianza longitudinal: Evaluación de la consistencia de las mediciones a lo largo del tiempo.
 
-Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por Saunders et al. (2023) en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros.
+Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por @saundersMeasurementInvariancePHQ92023 en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros.
 
 Propuesta de Análisis: 
 

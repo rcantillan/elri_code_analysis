@@ -56,7 +56,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -152,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </nav>
 </div>
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -221,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Este modelo nos ayuda a entender cómo los factores latentes influyen en las medias de las variables observadas.</p>
 </section>
 </section>
-<section id="modelos-de-múltiples-grupos-u-ocasiones" class="level2" data-number="2">
+<section id="modelos-de-múltiples-grupos-u-ocasiones" class="level2 page-columns page-full" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="modelos-de-múltiples-grupos-u-ocasiones"><span class="header-section-number">2</span> Modelos de Múltiples Grupos u Ocasiones</h2>
 <p><span class="math display">\[\Sigma_g = \Lambda_g \Psi_g \Lambda_g' + \Theta_g\]</span> <span class="math display">\[\mu_g = \tau_g + \Lambda_g \alpha_g\]</span></p>
 <p>Estos modelos extienden los anteriores a situaciones donde tenemos múltiples grupos o mediciones en diferentes momentos.</p>
@@ -229,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>El subíndice <span class="math inline">\(g\)</span> indica que los parámetros pueden variar entre grupos u ocasiones.</li>
 <li>Nos permiten comparar la estructura factorial entre diferentes poblaciones o a lo largo del tiempo.</li>
 </ul>
-<section id="niveles-de-invarianza-de-medición" class="level3" data-number="2.1">
+<section id="niveles-de-invarianza-de-medición" class="level3 page-columns page-full" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="niveles-de-invarianza-de-medición"><span class="header-section-number">2.1</span> Niveles de Invarianza de Medición</h3>
 <ol type="1">
 <li><strong>Invarianza Configural</strong>:
@@ -253,10 +272,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Es el nivel más estricto de invarianza, raramente alcanzado en la práctica.</li>
 </ul></li>
 </ol>
-<p>Estos niveles de invarianza son cruciales para asegurar que estamos midiendo los mismos constructos de la misma manera en diferentes grupos o momentos, permitiendo comparaciones significativas.</p>
+<p>Estos niveles de invarianza son cruciales para asegurar que estamos midiendo los mismos constructos de la misma manera en diferentes grupos o momentos, permitiendo comparaciones significativas. Los análisis que siguen los realizaremos utilizando la librería Lavaan diseñada para entorno R <span class="citation" data-cites="rosseelLavaanLatentVariable2012">Rosseel, Jorgensen, and De Wilde (<a href="#ref-rosseelLavaanLatentVariable2012" role="doc-biblioref">2012</a>)</span></p>
+<div class="no-row-height column-margin column-container"><div id="ref-rosseelLavaanLatentVariable2012" class="csl-entry" role="listitem">
+Rosseel, Yves, Terrence D. Jorgensen, and Luc De Wilde. 2012. <span>“Lavaan: <span>Latent Variable Analysis</span>.”</span> Comprehensive R Archive Network. <a href="https://doi.org/10.32614/CRAN.package.lavaan">https://doi.org/10.32614/CRAN.package.lavaan</a>.
+</div></div></section>
 </section>
-</section>
-<section id="análisis-invarianza-elri---phq9" class="level2" data-number="3">
+<section id="análisis-invarianza-elri---phq9" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="análisis-invarianza-elri---phq9"><span class="header-section-number">3</span> Análisis Invarianza ELRI - PHQ9</h2>
 <p>El Cuestionario de Salud del Paciente-9 (PHQ-9) es una herramienta ampliamente utilizada para evaluar síntomas depresivos. Sin embargo, es crucial asegurar que este instrumento mantenga su validez y fiabilidad al aplicarse en diferentes grupos culturales y a lo largo del tiempo. Este reporte describe la estrategia propuesta para evaluar la invarianza de medición del PHQ-9 entre poblaciones indígenas y no indígenas, así como su invarianza longitudinal.</p>
 <ul>
@@ -266,8 +287,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Invarianza longitudinal: Evaluación de la consistencia de las mediciones a lo largo del tiempo.</li>
 </ul></li>
 </ul>
-<p>Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por Saunders et al.&nbsp;(2023) en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros.</p>
-<p>Propuesta de Análisis:</p>
+<p>Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por <span class="citation" data-cites="saundersMeasurementInvariancePHQ92023">Saunders et al. (<a href="#ref-saundersMeasurementInvariancePHQ92023" role="doc-biblioref">2023</a>)</span> en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-saundersMeasurementInvariancePHQ92023" class="csl-entry" role="listitem">
+Saunders, Rob, Delilah Moinian, Joshua Stott, Henry Delamain, Syed Ali Naqvi, Satwant Singh, Jon Wheatley, Stephen Pilling, and Joshua E. J. Buckman. 2023. <span>“Measurement Invariance of the <span>PHQ-9</span> and <span>GAD-7</span> Across Males and Females Seeking Treatment for Common Mental Health Disorders.”</span> <em>BMC Psychiatry</em> 23 (1): 298. <a href="https://doi.org/10.1186/s12888-023-04804-x">https://doi.org/10.1186/s12888-023-04804-x</a>.
+</div></div><p>Propuesta de Análisis:</p>
 <ol type="1">
 <li>Análisis Factorial Confirmatorio (CFA) Inicial</li>
 </ol>
@@ -321,8 +344,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) max used (Mb)
-Ncells  594316 31.8    1351920 72.3   692251 37.0
-Vcells 1100250  8.4    8388608 64.0  1923450 14.7</code></pre>
+Ncells  594329 31.8    1351957 72.3   692251 37.0
+Vcells 1100414  8.4    8388608 64.0  1923450 14.7</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(influence.SEM)</span>
@@ -1116,6 +1139,7 @@ fit_2023_2f_metric 59         243.61
 fit_2023_2f_scalar 75         244.51      4.027      16     0.9989</code></pre>
 </div>
 </div>
+
 </section>
 </section>
 
