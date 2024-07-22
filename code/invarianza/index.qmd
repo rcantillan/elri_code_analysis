@@ -1,6 +1,6 @@
 ---
-title: "Documento de trabajo 1" 
-subtitle: "Análisis de Invarianza"
+title: "Análisis invarianza PHQ9" 
+subtitle: "Documento de trabajo"
 author: "Roberto Cantillan | Matías Deneken"
 date: today
 format:
