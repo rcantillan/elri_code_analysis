@@ -5,6 +5,7 @@ author: "Roberto Cantillan | Matías Deneken"
 date: today
 format:
   html:
+    toc-title: "Contenidos"
     theme: cosmo
     toc: true
     toc-depth: 3
