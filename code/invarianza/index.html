@@ -36,16 +36,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <style>
-  #title-block-header {
-    margin-bottom: 20px;
-    text-align: center;
-  }
+  /* Estilo para el contenedor del logo */
   .logo-container {
-    margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;  /* Espacio entre el logo y el título */
   }
   .logo-container img {
-    max-width: 200px;
+    max-width: 200px;  /* Ajusta esto según el tamaño deseado */
     height: auto;
+  }
+  /* Asegurarse de que el título esté debajo del logo */
+  #title-block-header {
+    margin-top: 20px;  /* Espacio adicional sobre el título */
   }
 </style>
 
@@ -95,9 +97,11 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<!-- Logo colocado explícitamente antes del bloque de título -->
 <div class="logo-container">
 <p><img src="img/ciir_en-negro-vertical.jpg" class="img-fluid"></p>
 </div>
+<!-- El bloque de título (con el título real) aparecerá automáticamente aquí -->
 <section id="introducción" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
 <p>Este es el contenido de tu documento…</p>
