@@ -1,5 +1,5 @@
 ---
-title: "Documento de trabajo 1: Análisis de Invarianza"
+title: "Documento de trabajo 1 \n Análisis de Invarianza"
 author: "Roberto Cantillan | Matías Deneken"
 date: today
 format:
@@ -34,4 +34,42 @@ editor: visual
 
 ## Introducción
 
-Este es el contenido de tu documento...
+###Modelo de Factor Común
+
+El modelo básico de análisis factorial se puede expresar como:
+
+$$Y_i = \Lambda F_i + U_i$$
+
+Donde:
+
+- $Y_i$: Vector $p \times 1$ de puntuaciones de variables observadas
+- $\Lambda$: Matriz $p \times q$ de cargas factoriales
+- $F_i$: Vector $q \times 1$ de puntuaciones de factores comunes
+- $U_i$: Vector $p \times 1$ de puntuaciones de factores únicos
+
+### Expectativas de Covarianza y Media
+
+La matriz de covarianza esperada:
+
+$$\Sigma = \Lambda \Psi \Lambda' + \Theta$$
+
+El vector de media esperado:
+
+$$\mu = \tau + \Lambda \alpha$$
+
+### Extensión a Múltiples Grupos u Ocasiones
+
+Para el caso de dos ocasiones:
+
+$$\Sigma_g = \Lambda_g \Psi_g \Lambda_g' + \Theta_g$$
+$$\mu_g = \tau_g + \Lambda_g \alpha_g$$
+
+## Niveles de Invarianza de Medición
+
+1. **Invarianza Configural**: Estructura de $\Lambda_g$ equivalente entre ocasiones.
+2. **Invarianza Débil**: Cargas factoriales equivalentes, $\Lambda_g = \Lambda$.
+3. **Invarianza Fuerte**: Medias manifiestas equivalentes, $\tau_g = \tau$.
+4. **Invarianza Estricta**: Varianzas residuales equivalentes, $\Theta_g = \Theta$.
+
+Las pruebas de invarianza de medición se realizan generalmente en un marco de Modelado de Ecuaciones Estructurales (SEM), utilizando paquetes como `lavaan` en R.
+

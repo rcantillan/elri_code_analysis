@@ -9,7 +9,7 @@
 <meta name="author" content="Roberto Cantillan | Matías Deneken">
 <meta name="dcterms.date" content="2024-07-22">
 
-<title>Documento de trabajo 1: Análisis de Invarianza</title>
+<title>Documento de trabajo 1 Análisis de Invarianza</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,6 +55,8 @@ ul.task-list li input[type="checkbox"] {
   }
 </style>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -66,7 +68,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a>
+  <ul class="collapse">
+  <li><a href="#expectativas-de-covarianza-y-media" id="toc-expectativas-de-covarianza-y-media" class="nav-link" data-scroll-target="#expectativas-de-covarianza-y-media"><span class="header-section-number">1.1</span> Expectativas de Covarianza y Media</a></li>
+  <li><a href="#extensión-a-múltiples-grupos-u-ocasiones" id="toc-extensión-a-múltiples-grupos-u-ocasiones" class="nav-link" data-scroll-target="#extensión-a-múltiples-grupos-u-ocasiones"><span class="header-section-number">1.2</span> Extensión a Múltiples Grupos u Ocasiones</a></li>
+  </ul></li>
+  <li><a href="#niveles-de-invarianza-de-medición" id="toc-niveles-de-invarianza-de-medición" class="nav-link" data-scroll-target="#niveles-de-invarianza-de-medición"><span class="header-section-number">2</span> Niveles de Invarianza de Medición</a></li>
   </ul>
 </nav>
 </div>
@@ -74,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documento de trabajo 1: Análisis de Invarianza</h1>
+<h1 class="title">Documento de trabajo 1 Análisis de Invarianza</h1>
 </div>
 
 
@@ -103,7 +110,38 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introducción" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
-<p>Este es el contenido de tu documento…</p>
+<p>###Modelo de Factor Común</p>
+<p>El modelo básico de análisis factorial se puede expresar como:</p>
+<p><span class="math display">\[Y_i = \Lambda F_i + U_i\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span>: Vector <span class="math inline">\(p \times 1\)</span> de puntuaciones de variables observadas</li>
+<li><span class="math inline">\(\Lambda\)</span>: Matriz <span class="math inline">\(p \times q\)</span> de cargas factoriales</li>
+<li><span class="math inline">\(F_i\)</span>: Vector <span class="math inline">\(q \times 1\)</span> de puntuaciones de factores comunes</li>
+<li><span class="math inline">\(U_i\)</span>: Vector <span class="math inline">\(p \times 1\)</span> de puntuaciones de factores únicos</li>
+</ul>
+<section id="expectativas-de-covarianza-y-media" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="expectativas-de-covarianza-y-media"><span class="header-section-number">1.1</span> Expectativas de Covarianza y Media</h3>
+<p>La matriz de covarianza esperada:</p>
+<p><span class="math display">\[\Sigma = \Lambda \Psi \Lambda' + \Theta\]</span></p>
+<p>El vector de media esperado:</p>
+<p><span class="math display">\[\mu = \tau + \Lambda \alpha\]</span></p>
+</section>
+<section id="extensión-a-múltiples-grupos-u-ocasiones" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="extensión-a-múltiples-grupos-u-ocasiones"><span class="header-section-number">1.2</span> Extensión a Múltiples Grupos u Ocasiones</h3>
+<p>Para el caso de dos ocasiones:</p>
+<p><span class="math display">\[\Sigma_g = \Lambda_g \Psi_g \Lambda_g' + \Theta_g\]</span> <span class="math display">\[\mu_g = \tau_g + \Lambda_g \alpha_g\]</span></p>
+</section>
+</section>
+<section id="niveles-de-invarianza-de-medición" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="niveles-de-invarianza-de-medición"><span class="header-section-number">2</span> Niveles de Invarianza de Medición</h2>
+<ol type="1">
+<li><strong>Invarianza Configural</strong>: Estructura de <span class="math inline">\(\Lambda_g\)</span> equivalente entre ocasiones.</li>
+<li><strong>Invarianza Débil</strong>: Cargas factoriales equivalentes, <span class="math inline">\(\Lambda_g = \Lambda\)</span>.</li>
+<li><strong>Invarianza Fuerte</strong>: Medias manifiestas equivalentes, <span class="math inline">\(\tau_g = \tau\)</span>.</li>
+<li><strong>Invarianza Estricta</strong>: Varianzas residuales equivalentes, <span class="math inline">\(\Theta_g = \Theta\)</span>.</li>
+</ol>
+<p>Las pruebas de invarianza de medición se realizan generalmente en un marco de Modelado de Ecuaciones Estructurales (SEM), utilizando paquetes como <code>lavaan</code> en R.</p>
 </section>
 
 </main>
