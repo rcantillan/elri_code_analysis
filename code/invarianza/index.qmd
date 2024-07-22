@@ -8,33 +8,40 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
+    include-after-body:
+      text: |
+        <script>
+          // Mover el logo debajo del título
+          document.addEventListener('DOMContentLoaded', (event) => {
+            const titleBlock = document.querySelector('#title-block-header');
+            const logoContainer = document.querySelector('.logo-container');
+            if (titleBlock && logoContainer) {
+              titleBlock.after(logoContainer);
+            }
+          });
+        </script>
     include-in-header:
       text: |
         <style>
-          /* Estilo para el contenedor del logo */
           .logo-container {
             text-align: center;
-            margin-bottom: 20px;  /* Espacio entre el logo y el título */
+            margin-top: 20px;
+            margin-bottom: 20px;
           }
           .logo-container img {
-            max-width: 200px;  /* Ajusta esto según el tamaño deseado */
+            max-width: 200px;
             height: auto;
-          }
-          /* Asegurarse de que el título esté debajo del logo */
-          #title-block-header {
-            margin-top: 20px;  /* Espacio adicional sobre el título */
           }
         </style>
 editor: visual
 ---
 
-<!-- Logo colocado explícitamente antes del bloque de título -->
 ::: {.logo-container}
 ![](img/ciir_en-negro-vertical.jpg)
-:::
 
-<!-- El bloque de título (con el título real) aparecerá automáticamente aquí -->
+:::
 
 ## Introducción
 
 Este es el contenido de tu documento...
+
