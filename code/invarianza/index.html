@@ -9,7 +9,7 @@
 <meta name="author" content="Roberto Cantillan | Matías Deneken">
 <meta name="dcterms.date" content="2024-07-22">
 
-<title>Documento de trabajo 1 Análisis de Invarianza</title>
+<title>Documento de trabajo 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,10 +70,14 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a>
   <ul class="collapse">
-  <li><a href="#expectativas-de-covarianza-y-media" id="toc-expectativas-de-covarianza-y-media" class="nav-link" data-scroll-target="#expectativas-de-covarianza-y-media"><span class="header-section-number">1.1</span> Expectativas de Covarianza y Media</a></li>
-  <li><a href="#extensión-a-múltiples-grupos-u-ocasiones" id="toc-extensión-a-múltiples-grupos-u-ocasiones" class="nav-link" data-scroll-target="#extensión-a-múltiples-grupos-u-ocasiones"><span class="header-section-number">1.2</span> Extensión a Múltiples Grupos u Ocasiones</a></li>
+  <li><a href="#modelo-básico-de-análisis-factorial" id="toc-modelo-básico-de-análisis-factorial" class="nav-link" data-scroll-target="#modelo-básico-de-análisis-factorial"><span class="header-section-number">1.1</span> Modelo Básico de Análisis Factorial</a></li>
+  <li><a href="#modelo-de-covarianza" id="toc-modelo-de-covarianza" class="nav-link" data-scroll-target="#modelo-de-covarianza"><span class="header-section-number">1.2</span> Modelo de Covarianza</a></li>
+  <li><a href="#modelo-de-media" id="toc-modelo-de-media" class="nav-link" data-scroll-target="#modelo-de-media"><span class="header-section-number">1.3</span> Modelo de Media</a></li>
   </ul></li>
-  <li><a href="#niveles-de-invarianza-de-medición" id="toc-niveles-de-invarianza-de-medición" class="nav-link" data-scroll-target="#niveles-de-invarianza-de-medición"><span class="header-section-number">2</span> Niveles de Invarianza de Medición</a></li>
+  <li><a href="#modelos-de-múltiples-grupos-u-ocasiones" id="toc-modelos-de-múltiples-grupos-u-ocasiones" class="nav-link" data-scroll-target="#modelos-de-múltiples-grupos-u-ocasiones"><span class="header-section-number">2</span> Modelos de Múltiples Grupos u Ocasiones</a>
+  <ul class="collapse">
+  <li><a href="#niveles-de-invarianza-de-medición" id="toc-niveles-de-invarianza-de-medición" class="nav-link" data-scroll-target="#niveles-de-invarianza-de-medición"><span class="header-section-number">2.1</span> Niveles de Invarianza de Medición</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -81,7 +85,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documento de trabajo 1 Análisis de Invarianza</h1>
+<h1 class="title">Documento de trabajo 1</h1>
+<p class="subtitle lead">Análisis de Invarianza</p>
 </div>
 
 
@@ -110,38 +115,75 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introducción" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
-<p>###Modelo de Factor Común</p>
-<p>El modelo básico de análisis factorial se puede expresar como:</p>
+<section id="modelo-básico-de-análisis-factorial" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="modelo-básico-de-análisis-factorial"><span class="header-section-number">1.1</span> Modelo Básico de Análisis Factorial</h3>
+<p>El modelo básico se expresa como:</p>
 <p><span class="math display">\[Y_i = \Lambda F_i + U_i\]</span></p>
-<p>Donde:</p>
+<p>Este modelo describe cómo las variables observadas (<span class="math inline">\(Y_i\)</span>) se relacionan con factores latentes subyacentes (<span class="math inline">\(F_i\)</span>) y factores únicos (<span class="math inline">\(U_i\)</span>).</p>
 <ul>
-<li><span class="math inline">\(Y_i\)</span>: Vector <span class="math inline">\(p \times 1\)</span> de puntuaciones de variables observadas</li>
-<li><span class="math inline">\(\Lambda\)</span>: Matriz <span class="math inline">\(p \times q\)</span> de cargas factoriales</li>
-<li><span class="math inline">\(F_i\)</span>: Vector <span class="math inline">\(q \times 1\)</span> de puntuaciones de factores comunes</li>
-<li><span class="math inline">\(U_i\)</span>: Vector <span class="math inline">\(p \times 1\)</span> de puntuaciones de factores únicos</li>
+<li><span class="math inline">\(Y_i\)</span> representa las variables que podemos medir directamente.</li>
+<li><span class="math inline">\(F_i\)</span> son los factores comunes que influyen en múltiples variables observadas.</li>
+<li><span class="math inline">\(U_i\)</span> representa la varianza única de cada variable observada, incluyendo el error de medición.</li>
+<li><span class="math inline">\(\Lambda\)</span> contiene las cargas factoriales, que indican cuánto influye cada factor en cada variable observada.</li>
 </ul>
-<section id="expectativas-de-covarianza-y-media" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="expectativas-de-covarianza-y-media"><span class="header-section-number">1.1</span> Expectativas de Covarianza y Media</h3>
-<p>La matriz de covarianza esperada:</p>
+</section>
+<section id="modelo-de-covarianza" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="modelo-de-covarianza"><span class="header-section-number">1.2</span> Modelo de Covarianza</h3>
 <p><span class="math display">\[\Sigma = \Lambda \Psi \Lambda' + \Theta\]</span></p>
-<p>El vector de media esperado:</p>
+<p>Este modelo describe la estructura de covarianza de las variables observadas.</p>
+<ul>
+<li><span class="math inline">\(\Sigma\)</span> es la matriz de covarianza (o correlación) de las variables observadas.</li>
+<li><span class="math inline">\(\Psi\)</span> es la matriz de covarianza de los factores latentes.</li>
+<li><span class="math inline">\(\Theta\)</span> es una matriz diagonal de varianzas únicas.</li>
+</ul>
+<p>Este modelo nos permite entender cómo se relacionan las variables observadas entre sí a través de los factores latentes.</p>
+</section>
+<section id="modelo-de-media" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="modelo-de-media"><span class="header-section-number">1.3</span> Modelo de Media</h3>
 <p><span class="math display">\[\mu = \tau + \Lambda \alpha\]</span></p>
+<p>Este modelo describe las medias de las variables observadas.</p>
+<ul>
+<li><span class="math inline">\(\mu\)</span> es el vector de medias de las variables observadas.</li>
+<li><span class="math inline">\(\tau\)</span> es un vector de interceptos.</li>
+<li><span class="math inline">\(\alpha\)</span> es un vector de medias de los factores latentes.</li>
+</ul>
+<p>Este modelo nos ayuda a entender cómo los factores latentes influyen en las medias de las variables observadas.</p>
 </section>
-<section id="extensión-a-múltiples-grupos-u-ocasiones" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="extensión-a-múltiples-grupos-u-ocasiones"><span class="header-section-number">1.2</span> Extensión a Múltiples Grupos u Ocasiones</h3>
-<p>Para el caso de dos ocasiones:</p>
+</section>
+<section id="modelos-de-múltiples-grupos-u-ocasiones" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="modelos-de-múltiples-grupos-u-ocasiones"><span class="header-section-number">2</span> Modelos de Múltiples Grupos u Ocasiones</h2>
 <p><span class="math display">\[\Sigma_g = \Lambda_g \Psi_g \Lambda_g' + \Theta_g\]</span> <span class="math display">\[\mu_g = \tau_g + \Lambda_g \alpha_g\]</span></p>
-</section>
-</section>
-<section id="niveles-de-invarianza-de-medición" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="niveles-de-invarianza-de-medición"><span class="header-section-number">2</span> Niveles de Invarianza de Medición</h2>
+<p>Estos modelos extienden los anteriores a situaciones donde tenemos múltiples grupos o mediciones en diferentes momentos.</p>
+<ul>
+<li>El subíndice <span class="math inline">\(g\)</span> indica que los parámetros pueden variar entre grupos u ocasiones.</li>
+<li>Nos permiten comparar la estructura factorial entre diferentes poblaciones o a lo largo del tiempo.</li>
+</ul>
+<section id="niveles-de-invarianza-de-medición" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="niveles-de-invarianza-de-medición"><span class="header-section-number">2.1</span> Niveles de Invarianza de Medición</h3>
 <ol type="1">
-<li><strong>Invarianza Configural</strong>: Estructura de <span class="math inline">\(\Lambda_g\)</span> equivalente entre ocasiones.</li>
-<li><strong>Invarianza Débil</strong>: Cargas factoriales equivalentes, <span class="math inline">\(\Lambda_g = \Lambda\)</span>.</li>
-<li><strong>Invarianza Fuerte</strong>: Medias manifiestas equivalentes, <span class="math inline">\(\tau_g = \tau\)</span>.</li>
-<li><strong>Invarianza Estricta</strong>: Varianzas residuales equivalentes, <span class="math inline">\(\Theta_g = \Theta\)</span>.</li>
+<li><strong>Invarianza Configural</strong>:
+<ul>
+<li>Asegura que la estructura básica del modelo (número de factores y patrón de cargas) es la misma en todos los grupos.</li>
+<li>No requiere que los valores de las cargas sean iguales.</li>
+</ul></li>
+<li><strong>Invarianza Débil (Métrica)</strong>:
+<ul>
+<li>Requiere que las cargas factoriales (<span class="math inline">\(\Lambda_g\)</span>) sean iguales entre grupos.</li>
+<li>Implica que los factores tienen el mismo significado en todos los grupos.</li>
+</ul></li>
+<li><strong>Invarianza Fuerte (Escalar)</strong>:
+<ul>
+<li>Además de la invarianza débil, requiere que los interceptos (<span class="math inline">\(\tau_g\)</span>) sean iguales.</li>
+<li>Permite comparar las medias de los factores latentes entre grupos.</li>
+</ul></li>
+<li><strong>Invarianza Estricta</strong>:
+<ul>
+<li>Además de la invarianza fuerte, requiere que las varianzas residuales (<span class="math inline">\(\Theta_g\)</span>) sean iguales.</li>
+<li>Es el nivel más estricto de invarianza, raramente alcanzado en la práctica.</li>
+</ul></li>
 </ol>
-<p>Las pruebas de invarianza de medición se realizan generalmente en un marco de Modelado de Ecuaciones Estructurales (SEM), utilizando paquetes como <code>lavaan</code> en R.</p>
+<p>Estos niveles de invarianza son cruciales para asegurar que estamos midiendo los mismos constructos de la misma manera en diferentes grupos o momentos, permitiendo comparaciones significativas.</p>
+</section>
 </section>
 
 </main>

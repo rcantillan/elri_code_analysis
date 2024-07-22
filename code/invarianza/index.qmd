@@ -1,5 +1,6 @@
 ---
-title: "Documento de trabajo 1 \n Análisis de Invarianza"
+title: "Documento de trabajo 1" 
+subtitle: "Análisis de Invarianza"
 author: "Roberto Cantillan | Matías Deneken"
 date: today
 format:
@@ -34,42 +35,70 @@ editor: visual
 
 ## Introducción
 
-###Modelo de Factor Común
+### Modelo Básico de Análisis Factorial
 
-El modelo básico de análisis factorial se puede expresar como:
+El modelo básico se expresa como:
 
 $$Y_i = \Lambda F_i + U_i$$
 
-Donde:
+Este modelo describe cómo las variables observadas ($Y_i$) se relacionan con factores latentes subyacentes ($F_i$) y factores únicos ($U_i$).
 
-- $Y_i$: Vector $p \times 1$ de puntuaciones de variables observadas
-- $\Lambda$: Matriz $p \times q$ de cargas factoriales
-- $F_i$: Vector $q \times 1$ de puntuaciones de factores comunes
-- $U_i$: Vector $p \times 1$ de puntuaciones de factores únicos
+- $Y_i$ representa las variables que podemos medir directamente.
+- $F_i$ son los factores comunes que influyen en múltiples variables observadas.
+- $U_i$ representa la varianza única de cada variable observada, incluyendo el error de medición.
+- $\Lambda$ contiene las cargas factoriales, que indican cuánto influye cada factor en cada variable observada.
 
-### Expectativas de Covarianza y Media
-
-La matriz de covarianza esperada:
+### Modelo de Covarianza
 
 $$\Sigma = \Lambda \Psi \Lambda' + \Theta$$
 
-El vector de media esperado:
+Este modelo describe la estructura de covarianza de las variables observadas.
+
+- $\Sigma$ es la matriz de covarianza (o correlación) de las variables observadas.
+- $\Psi$ es la matriz de covarianza de los factores latentes.
+- $\Theta$ es una matriz diagonal de varianzas únicas.
+
+Este modelo nos permite entender cómo se relacionan las variables observadas entre sí a través de los factores latentes.
+
+### Modelo de Media
 
 $$\mu = \tau + \Lambda \alpha$$
 
-### Extensión a Múltiples Grupos u Ocasiones
+Este modelo describe las medias de las variables observadas.
 
-Para el caso de dos ocasiones:
+- $\mu$ es el vector de medias de las variables observadas.
+- $\tau$ es un vector de interceptos.
+- $\alpha$ es un vector de medias de los factores latentes.
+
+Este modelo nos ayuda a entender cómo los factores latentes influyen en las medias de las variables observadas.
+
+## Modelos de Múltiples Grupos u Ocasiones
 
 $$\Sigma_g = \Lambda_g \Psi_g \Lambda_g' + \Theta_g$$
 $$\mu_g = \tau_g + \Lambda_g \alpha_g$$
 
-## Niveles de Invarianza de Medición
+Estos modelos extienden los anteriores a situaciones donde tenemos múltiples grupos o mediciones en diferentes momentos.
 
-1. **Invarianza Configural**: Estructura de $\Lambda_g$ equivalente entre ocasiones.
-2. **Invarianza Débil**: Cargas factoriales equivalentes, $\Lambda_g = \Lambda$.
-3. **Invarianza Fuerte**: Medias manifiestas equivalentes, $\tau_g = \tau$.
-4. **Invarianza Estricta**: Varianzas residuales equivalentes, $\Theta_g = \Theta$.
+- El subíndice $g$ indica que los parámetros pueden variar entre grupos u ocasiones.
+- Nos permiten comparar la estructura factorial entre diferentes poblaciones o a lo largo del tiempo.
 
-Las pruebas de invarianza de medición se realizan generalmente en un marco de Modelado de Ecuaciones Estructurales (SEM), utilizando paquetes como `lavaan` en R.
+### Niveles de Invarianza de Medición
+
+1. **Invarianza Configural**: 
+   - Asegura que la estructura básica del modelo (número de factores y patrón de cargas) es la misma en todos los grupos.
+   - No requiere que los valores de las cargas sean iguales.
+
+2. **Invarianza Débil (Métrica)**:
+   - Requiere que las cargas factoriales ($\Lambda_g$) sean iguales entre grupos.
+   - Implica que los factores tienen el mismo significado en todos los grupos.
+
+3. **Invarianza Fuerte (Escalar)**:
+   - Además de la invarianza débil, requiere que los interceptos ($\tau_g$) sean iguales.
+   - Permite comparar las medias de los factores latentes entre grupos.
+
+4. **Invarianza Estricta**:
+   - Además de la invarianza fuerte, requiere que las varianzas residuales ($\Theta_g$) sean iguales.
+   - Es el nivel más estricto de invarianza, raramente alcanzado en la práctica.
+
+Estos niveles de invarianza son cruciales para asegurar que estamos midiendo los mismos constructos de la misma manera en diferentes grupos o momentos, permitiendo comparaciones significativas.
 
