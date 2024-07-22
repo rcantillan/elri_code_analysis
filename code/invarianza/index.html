@@ -36,14 +36,18 @@ ul.task-list li input[type="checkbox"] {
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <style>
-  .logo-container {
-    text-align: left;
-    margin-top: 20px;
+  body::before {
+    content: url('img/ciir_en-negro-vertical.jpg');
+    display: block;
+    text-align: center;
     margin-bottom: 20px;
   }
-  .logo-container img {
+  body::before img {
     max-width: 200px;
     height: auto;
+  }
+  #title-block-header {
+    margin-top: 20px;
   }
 </style>
 
@@ -93,9 +97,6 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<div class="logo-container">
-<p><img src="img/ciir_en-negro-vertical.jpg" class="img-fluid"></p>
-</div>
 <section id="introducción" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
 <p>Este es el contenido de tu documento…</p>
@@ -337,16 +338,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>
-  // Mover el logo debajo del título
-  document.addEventListener('DOMContentLoaded', (event) => {
-    const titleBlock = document.querySelector('#title-block-header');
-    const logoContainer = document.querySelector('.logo-container');
-    if (titleBlock && logoContainer) {
-      titleBlock.after(logoContainer);
-    }
-  });
-</script>
 
 
 

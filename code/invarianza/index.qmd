@@ -8,40 +8,28 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
-    include-after-body:
-      text: |
-        <script>
-          // Mover el logo debajo del título
-          document.addEventListener('DOMContentLoaded', (event) => {
-            const titleBlock = document.querySelector('#title-block-header');
-            const logoContainer = document.querySelector('.logo-container');
-            if (titleBlock && logoContainer) {
-              titleBlock.after(logoContainer);
-            }
-          });
-        </script>
     include-in-header:
       text: |
         <style>
-          .logo-container {
-            text-align: left;
-            margin-top: 20px;
+          body::before {
+            content: url('img/ciir_en-negro-vertical.jpg');
+            display: block;
+            text-align: center;
             margin-bottom: 20px;
           }
-          .logo-container img {
+          body::before img {
             max-width: 200px;
             height: auto;
+          }
+          #title-block-header {
+            margin-top: 20px;
           }
         </style>
 editor: visual
 ---
 
-::: {.logo-container}
-![](img/ciir_en-negro-vertical.jpg)
-
-:::
-
 ## Introducción
 
 Este es el contenido de tu documento...
+
 
