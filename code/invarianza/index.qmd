@@ -8,27 +8,27 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
-    title-block-banner: true
-    title-block-banner-color: "#FFFFFF"
     include-in-header:
       text: |
         <style>
           #title-block-header {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
           }
-          #title-block-header .title {
-            margin-left: 820px;  /* Ajusta esto según el tamaño de tu logo */
+          .logo-container {
+            margin-bottom: 20px;
           }
-          .quarto-title-block .quarto-title-banner {
-            padding-left: 120px;
-            background-image: url('img/ciir_en-negro-vertical.jpg');
-            background-size: 100px auto;
-            background-position: center 10px center;
-            background-repeat: no-repeat;
+          .logo-container img {
+            max-width: 200px;
+            height: auto;
           }
         </style>
 editor: visual
 ---
+
+::: {.logo-container}
+![](img/ciir_en-negro-vertical.jpg)
+:::
 
 ## Introducción
 
