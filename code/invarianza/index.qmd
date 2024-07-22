@@ -16,13 +16,14 @@ format:
             display: block;
             text-align: center;
             margin-bottom: 20px;
+            transform: scale(0.5); /* Reduce el tamaño del logo al 50% */
           }
           body::before img {
-            max-width: 100px;
+            max-width: 100px; /* Reducimos el tamaño máximo */
             height: auto;
           }
           #title-block-header {
-            margin-top: 10px;
+            margin-top: 20px;
           }
         </style>
 editor: visual
@@ -31,5 +32,3 @@ editor: visual
 ## Introducción
 
 Este es el contenido de tu documento...
-
-
