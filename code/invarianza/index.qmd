@@ -103,12 +103,69 @@ Estos modelos extienden los anteriores a situaciones donde tenemos múltiples gr
 Estos niveles de invarianza son cruciales para asegurar que estamos midiendo los mismos constructos de la misma manera en diferentes grupos o momentos, permitiendo comparaciones significativas.
 
 
+## Análisis Invarianza ELRI - PHQ9 
+
+El Cuestionario de Salud del Paciente-9 (PHQ-9) es una herramienta ampliamente utilizada para evaluar síntomas depresivos. Sin embargo, es crucial asegurar que este instrumento mantenga su validez y fiabilidad al aplicarse en diferentes grupos culturales y a lo largo del tiempo. Este reporte describe la estrategia propuesta para evaluar la invarianza de medición del PHQ-9 entre poblaciones indígenas y no indígenas, así como su invarianza longitudinal. 
 
 
+- Nuestro estudio se centrará en dos aspectos principales:
 
+  -   Invarianza entre grupos: Comparación entre poblaciones indígenas y no indígenas.
+  -   Invarianza longitudinal: Evaluación de la consistencia de las mediciones a lo largo del tiempo.
 
-## Análisis Invarianza ELRI: Preparación datos
-```{r}
+Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por Saunders et al. (2023) en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros.
+
+Propuesta de Análisis: 
+
+1. Análisis Factorial Confirmatorio (CFA) Inicial
+
+  +   Realizar un CFA del PHQ-9 para la muestra completa.
+  +   Evaluar el ajuste del modelo utilizando los índices CFI, RMSEA y SRMR.
+
+2. Análisis Factorial Confirmatorio Multigrupo (MGCFA) - Comparación entre Grupos
+
+Realizaremos una serie de modelos anidados para evaluar diferentes niveles de invarianza:
+  +   M1: Invarianza Configural
+
+Misma estructura del modelo para ambos grupos (indígenas y no indígenas).
+  +   M2: Invarianza Métrica
+
+Cargas factoriales equivalentes entre grupos.
+
+  +   M3: Invarianza Escalar
+
+Cargas factoriales e interceptos equivalentes entre grupos.
+
+  +   M4: Invarianza Residual
+
+Cargas factoriales, interceptos y residuos equivalentes entre grupos.
+
+  +   M5: M4 + Invarianza de Medias de Factores
+  +   M6: M5 + Invarianza de Varianzas de Factores
+
+3. MGCFA - Invarianza Longitudinal
+Aplicaremos el mismo proceso de MGCFA para evaluar la invarianza a lo largo del tiempo:
+
+  +   Comparar los modelos (M1 a M6) entre diferentes puntos de medición.
+  +   Asegurar que el PHQ-9 mide el constructo de depresión de manera consistente en diferentes momentos.
+
+4. Criterios de Evaluación
+
+Para cada paso del MGCFA, evaluaremos el cambio en los estadísticos de ajuste del modelo:
+
+ΔCFI < 0.01
+ΔRMSEA < 0.015
+ΔSRMR < 0.030
+
+Si estos criterios se cumplen, consideraremos que se ha logrado la invarianza en ese nivel.
+
+5. Análisis de Sensibilidad
+
+  +   Realizar un emparejamiento por puntaje de propensión entre participantes indígenas y no indígenas.
+  +   Repetir los análisis MGCFA con la muestra emparejada para controlar posibles variables confusoras sociodemográficas.
+
+Preparación datos
+```{r, message=FALSE}
 cat("\014")
 rm(list = ls())
 gc()
@@ -179,6 +236,10 @@ data_no_indi <- elri_inv %>% filter(indi == "no_indi")
 
 
 ## Definir modelos de medición
+
+
+
+
 ```{r}
 model_1f <- '
   depression =~ g5_1 + g5_2 + g5_3 + g5_4 + g5_5 + g5_6 + g5_7 + g5_8 + g5_9
