@@ -3,7 +3,7 @@ title: Invarianza PHQ9 - ELRI
 subtitle: Documento de trabajo
 date: 2024-07-22
 where: Santiago, Chile
-web: [https://rcantillan.github.io/social_networks_intro/clase1/intro/](https://rcantillan.github.io/elri_code_analysis/code/invarianza/)
+web: https://rcantillan.github.io/elri_code_analysis/code/invarianza/
 ---
 
 
