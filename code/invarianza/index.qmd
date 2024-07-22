@@ -18,11 +18,11 @@ format:
             margin-bottom: 20px;
           }
           body::before img {
-            max-width: 200px;
+            max-width: 100px;
             height: auto;
           }
           #title-block-header {
-            margin-top: 20px;
+            margin-top: 10px;
           }
         </style>
 editor: visual
