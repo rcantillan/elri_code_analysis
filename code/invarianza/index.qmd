@@ -16,7 +16,7 @@ format:
           body::before {
             content: url('img/ciir_en-negro-vertical.jpg');
             display: block;
-            text-align: center;
+            text-align: left;
             margin-bottom: 5px; /* Reducido a 5px para un espacio mínimo */
             transform: scale(0.5);
           }
@@ -117,63 +117,96 @@ El Cuestionario de Salud del Paciente-9 (PHQ-9) es una herramienta ampliamente u
   -   Invarianza entre grupos: Comparación entre poblaciones indígenas y no indígenas.
   -   Invarianza longitudinal: Evaluación de la consistencia de las mediciones a lo largo del tiempo.
 
-Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por @saundersMeasurementInvariancePHQ92023 en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros.
+Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por @saundersMeasurementInvariancePHQ92023 en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros y, tambien, el realizado por Harry et al. @harryEvaluatingCrossculturalMeasurement2021 que realiza análisis de invarianza del PHQ9 entre diferentes grupos étnicos. 
 
-Propuesta de Análisis: 
 
-1. Análisis Factorial Confirmatorio (CFA) Inicial
+# estrategia de análisis
 
-  +   Realizar un CFA del PHQ-9 para la muestra completa.
-  +   Evaluar el ajuste del modelo utilizando los índices CFI, RMSEA y SRMR.
+## Preparación de datos
 
-2. Análisis Factorial Confirmatorio Multigrupo (MGCFA) - Comparación entre Grupos
+- Organizar los datos en formato longitudinal, con cada participante teniendo múltiples puntos de tiempo.
+- Codificar las variables de grupo (indígena vs. no indígena) y tiempo.
 
-Realizaremos una serie de modelos anidados para evaluar diferentes niveles de invarianza:
-  +   M1: Invarianza Configural
 
-Misma estructura del modelo para ambos grupos (indígenas y no indígenas).
-  +   M2: Invarianza Métrica
+## Análisis descriptivo
 
-Cargas factoriales equivalentes entre grupos.
+- Calcular estadísticas descriptivas para los ítems del PHQ-9 en cada punto de tiempo y para cada grupo.
+- Generar matrices de correlación y visualizarlas con mapas de calor.
 
-  +   M3: Invarianza Escalar
 
-Cargas factoriales e interceptos equivalentes entre grupos.
+## Especificación del modelo de medición:
 
-  +   M4: Invarianza Residual
+- Definir el modelo de un factor para el PHQ-9, donde los 9 ítems cargan en un factor latente de depresión.
+- Especificar el modelo para múltiples grupos y múltiples puntos de tiempo simultáneamente.
 
-Cargas factoriales, interceptos y residuos equivalentes entre grupos.
 
-  +   M5: M4 + Invarianza de Medias de Factores
-  +   M6: M5 + Invarianza de Varianzas de Factores
+## Análisis Factorial Confirmatorio (CFA) inicial:
 
-3. MGCFA - Invarianza Longitudinal
-Aplicaremos el mismo proceso de MGCFA para evaluar la invarianza a lo largo del tiempo:
+- Realizar un CFA para cada grupo y cada punto de tiempo por separado para evaluar el ajuste del modelo base.
+- Evaluar los índices de ajuste: CFI, TLI, RMSEA, y SRMR.
 
-  +   Comparar los modelos (M1 a M6) entre diferentes puntos de medición.
-  +   Asegurar que el PHQ-9 mide el constructo de depresión de manera consistente en diferentes momentos.
 
-4. Criterios de Evaluación
+## Análisis de invarianza multigrupo-longitudinal:
 
-Para cada paso del MGCFA, evaluaremos el cambio en los estadísticos de ajuste del modelo:
+- Seguir una secuencia de modelos anidados cada vez más restrictivos:
 
-ΔCFI < 0.01
-ΔRMSEA < 0.015
-ΔSRMR < 0.030
+a) Invarianza configural:
 
-Si estos criterios se cumplen, consideraremos que se ha logrado la invarianza en ese nivel.
+Estimar el modelo sin restricciones entre grupos y tiempos.
+Este modelo establece la línea base para comparaciones posteriores.
 
-5. Análisis de Sensibilidad
+b) Invarianza métrica (débil):
 
-  +   Realizar un emparejamiento por puntaje de propensión entre participantes indígenas y no indígenas.
-  +   Repetir los análisis MGCFA con la muestra emparejada para controlar posibles variables confusoras sociodemográficas.
+Restringir las cargas factoriales para que sean iguales entre grupos y tiempos.
+Comparar con el modelo configural.
 
-Preparación datos
+c) Invarianza escalar (fuerte):
+
+Además de las cargas, restringir los interceptos para que sean iguales entre grupos y tiempos.
+Comparar con el modelo métrico.
+
+d) Invarianza estricta:
+
+Adicionalmente, restringir las varianzas residuales para que sean iguales.
+Comparar con el modelo escalar.
+
+
+## Evaluación de la invarianza:
+
+Utilizar cambios en los índices de ajuste para evaluar cada nivel de invarianza:
+
+- ΔCFI ≤ 0.01
+- ΔRMSEA ≤ 0.015
+- ΔSRMR ≤ 0.030
+
+
+Considerar el cambio en chi-cuadrado, pero no basarse únicamente en este debido a su sensibilidad al tamaño de la muestra.
+
+
+## Manejo de la no invarianza:
+
+- Si se detecta no invarianza, identificar los ítems específicos que causan el problema.
+- Considerar la liberación de restricciones para esos ítems (invarianza parcial).
+
+
+## Análisis de sensibilidad:
+
+- Realizar análisis adicionales para evaluar la robustez de los resultados, como:
+  - Usar diferentes estimadores (MLR, WLSMV)
+  - Probar modelos alternativos (por ejemplo, modelos de dos factores)
+
+
+Esta estrategia permite evaluar simultáneamente si el PHQ-9 funciona de manera equivalente tanto entre grupos (indígenas vs. no indígenas) como a lo largo del tiempo, proporcionando una comprensión más completa de la invarianza de medición del instrumento en este contexto específico.
+
+
+
+### Preparación datos
 ```{r, message=FALSE}
 cat("\014")
 rm(list = ls())
 gc()
 
+library(tidyverse)
 library(semTools)
 library(influence.SEM)
 library(dplyr)
@@ -185,6 +218,11 @@ library(stringr)
 library(sjlabelled)
 library(sjmisc)
 library(here)
+library(ggplot2)
+library(tidyr)
+library(purrr)
+library(reshape2)
+library(patchwork)
 ```
 
 
@@ -216,34 +254,97 @@ elri_inv <- BBDD_ELRI_LONG %>%
   filter(!is.na(indi)) %>% 
   select(folio, ano, indi, g5_1, g5_2, g5_3, g5_4, g5_5, g5_6, g5_7, g5_8, g5_9) 
 
-
-rm(BBDD_ELRI_LONG)
-glimpse(elri_inv)
-elri_inv %>% frq(ano)
-elri_inv %>% frq(indi)
 ```
 
-### Separar datos por año
+### Asegurar que 'indi' y 'ano' sean factores
 ```{r}
-data_2016 <- elri_inv %>% filter(ano == 2016)
-data_2018 <- elri_inv %>% filter(ano == 2018)
-data_2021 <- elri_inv %>% filter(ano == 2021)
-data_2023 <- elri_inv %>% filter(ano == 2023)
+elri_inv$indi <- as.factor(elri_inv$indi)
+elri_inv$ano <- as.factor(elri_inv$ano)
 ```
 
 
-### Separar datos por grupo indi/no_indi
+## Análisis descriptivo
+### Estadísticas descriptivas por grupo y año
+```{r, warning=FALSE, message=FALSE}
+descr_stats <- elri_inv %>%
+  group_by(indi, ano) %>%
+  summarise(across(g5_1:g5_9, list(mean = mean, sd = sd), na.rm = TRUE))
+```
+
+
 ```{r}
-data_indi <- elri_inv %>% filter(indi == "indi")
-data_no_indi <- elri_inv %>% filter(indi == "no_indi")
+# Preparar los datos para el gráfico
+descr_stats_long <- descr_stats %>%
+  pivot_longer(cols = -c(indi, ano), 
+               names_to = c("item", ".value"), 
+               names_pattern = "g5_(\\d+)_(.*)")
 ```
 
 
-## Definir modelos de medición
+```{r}
+# medias
+ggplot(descr_stats_long, aes(x = item, y = mean, fill = indi)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ ano) +
+  labs(title = "Medias de los ítems del PHQ-9 por grupo y año",
+       x = "Ítem", y = "Media", fill = "Grupo") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(hjust = 1))
+```
+
+
+```{r}
+# desviaciones estándar
+ggplot(descr_stats_long, aes(x = item, y = sd, fill = indi)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ ano) +
+  labs(title = "Desviaciones estándar de los ítems del PHQ-9 por grupo y año",
+       x = "Ítem", y = "Desviación estándar", fill = "Grupo") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(hjust = 1))
+```
+
+
+
+## Matrices de correlación por grupo y año
+```{r}
+corr_matrices <- elri_inv %>%
+  group_by(indi, ano) %>%
+  do(corr = cor(.[,4:12], use = "pairwise.complete.obs"))
+```
+
+
+```{r}
+# Función para crear un gráfico de correlación usando ggplot2
+plot_correlation <- function(cor_matrix, title) {
+  cor_melted <- melt(cor_matrix)
+  ggplot(cor_melted, aes(x = Var1, y = Var2, fill = value)) +
+    geom_tile() +
+    scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                         midpoint = 0, limit = c(-1,1), space = "Lab", 
+                         name="Correlación") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+    coord_fixed() +
+    geom_text(aes(label = round(value, 2)), color = "black", size = 3) +
+    labs(title = title, x = "", y = "")
+}
+
+# Crear y mostrar los gráficos de correlación para cada grupo y año
+corr_plots <- corr_matrices %>%
+  rowwise() %>%
+  mutate(plot = list(plot_correlation(corr, paste(indi, ano))))
+
+# Mostrar los gráficos
+for(i in 1:nrow(corr_plots)) {
+  print(corr_plots$plot[[i]])
+}
+```
 
 
 
 
+## Especificación del modelo de medición
 ```{r}
 model_1f <- '
   depression =~ g5_1 + g5_2 + g5_3 + g5_4 + g5_5 + g5_6 + g5_7 + g5_8 + g5_9
@@ -256,326 +357,309 @@ model_2f <- '
 ```
 
 
-## Invarianza longitudinal 
+## Análisis Factorial Confirmatorio (CFA) inicial
+### CFA para cada combinación de grupo y año
+```{r}
+cfa_results <- expand.grid(indi = levels(elri_inv$indi), ano = levels(elri_inv$ano)) %>%
+  mutate(
+    fit_1f = map2(indi, ano, ~cfa(model_1f, data = filter(elri_inv, indi == .x, ano == .y), 
+                                  estimator = "WLSMV", ordered = paste0("g5_", 1:9))),
+    fit_2f = map2(indi, ano, ~cfa(model_2f, data = filter(elri_inv, indi == .x, ano == .y), 
+                                  estimator = "WLSMV", ordered = paste0("g5_", 1:9)))
+  )
+```
+
+
+```{r}
+# Extraer índices de ajuste
+cfa_fit_indices <- cfa_results %>%
+  mutate(
+    fit_1f_indices = map(fit_1f, ~fitMeasures(., c("cfi", "tli", "rmsea", "srmr"))),
+    fit_2f_indices = map(fit_2f, ~fitMeasures(., c("cfi", "tli", "rmsea", "srmr")))
+  ) %>%
+  unnest_wider(c(fit_1f_indices, fit_2f_indices), names_sep = "_")
+
+# Preparar datos para gráficos
+plot_data <- cfa_fit_indices %>%
+  pivot_longer(
+    cols = c(contains("cfi"), contains("tli"), contains("rmsea"), contains("srmr")),
+    names_to = c("model", "index"),
+    names_pattern = "fit_(.f)_indices_(.*)",
+    values_to = "value"
+  )
+
+# Función para crear gráficos
+plot_fit_index <- function(data, index, title) {
+  ggplot(data %>% filter(index == !!index), 
+         aes(x = ano, y = value, color = indi, group = indi)) +
+    geom_line() +
+    geom_point() +
+    facet_wrap(~ model, labeller = labeller(model = c("1f" = "1 Factor", "2f" = "2 Factores"))) +
+    labs(title = title, x = "Año", y = index, color = "Grupo") +
+    theme_minimal() +
+    theme(legend.position = "bottom")
+}
+
+# Crear gráficos
+p_cfi <- plot_fit_index(plot_data, "cfi", "CFI a lo largo del tiempo")
+p_tli <- plot_fit_index(plot_data, "tli", "TLI a lo largo del tiempo")
+p_rmsea <- plot_fit_index(plot_data, "rmsea", "RMSEA a lo largo del tiempo")
+p_srmr <- plot_fit_index(plot_data, "srmr", "SRMR a lo largo del tiempo")
+
+# Combinar gráficos
+combined_plot <- (p_cfi + p_tli) / (p_rmsea + p_srmr)
+print(combined_plot)
+```
+
+
+
+```{r}
+# Imprimir tabla de resumen
+summary_table <- cfa_fit_indices %>%
+  select(indi, ano, contains("cfi"), contains("tli"), contains("rmsea"), contains("srmr"))
+print(summary_table)
+
+
+```
+
+
+### CFI (Índice de Ajuste Comparativo)
+
+- Rango ideal: > 0.95 (mejor cuanto más cerca de 1)
+
+Ambos modelos (1f y 2f) muestran excelentes valores de CFI (todos > 0.99) para ambos grupos en todos los años. Las diferencias entre los modelos de 1 y 2 factores son mínimas. El grupo no indígena tiende a tener valores CFI ligeramente más altos, excepto en 2021.
+
+
+### TLI (Índice de Tucker-Lewis):
+
+- Rango ideal: > 0.95 (mejor cuanto más cerca de 1)
+
+Al igual que con CFI, ambos modelos muestran excelentes valores de TLI (todos > 0.99). Las diferencias entre los modelos de 1 y 2 factores son muy pequeñas. El patrón es similar al CFI, con el grupo no indígena teniendo valores ligeramente más altos, excepto en 2021.
+
+
+### RMSEA (Error Cuadrático Medio de Aproximación):
+
+- Rango ideal: < 0.06 (menor es mejor)
+
+Los valores varían entre 0.039 y 0.076, indicando un ajuste de bueno a aceptable. El ajuste parece ser mejor en 2016 para ambos grupos, empeorando ligeramente en los años siguientes. El grupo no indígena tiende a tener valores RMSEA ligeramente más altos en 2021 y 2023.
+
+
+### SRMR (Raíz Cuadrada Media Residual Estandarizada):
+
+- Rango ideal: < 0.08 (menor es mejor)
+
+Todos los valores están por debajo de 0.08, indicando un buen ajuste. El ajuste parece ser mejor en 2016 para ambos grupos, con valores más altos en los años siguientes. El grupo no indígena tiende a tener valores SRMR ligeramente más altos en 2021.
+
+
+### En general: 
+
+- Ambos modelos (1 factor y 2 factores) muestran un ajuste excelente según CFI y TLI, y un ajuste bueno a aceptable según RMSEA y SRMR.
+
+- Las diferencias entre los modelos de 1 y 2 factores son mínimas, lo que sugiere que el modelo más simple de 1 factor podría ser preferible por parsimonia.
+
+- El ajuste tiende a ser mejor en 2016 para ambos grupos, con un ligero empeoramiento en los años siguientes, especialmente en 2021.
+
+- Hay algunas diferencias menores entre los grupos indígena y no indígena, pero en general, los patrones son similares.
+
+- El año 2021 muestra el ajuste menos favorable para ambos grupos, lo cual podría estar relacionado con factores externos (como la pandemia de COVID-19).
+
+
+## Análisis de invarianza multigrupo-longitudinal
+### Modelo de un factor
 ```{r}
 # Modelo de un factor
-fit_1f_configural_year <- cfa(model_1f,
-                              data = elri_inv,
-                              group = "ano",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_1f_metric_year <- cfa(model_1f,
-                          data = elri_inv,
-                          group = "ano",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_1f_scalar_year <- cfa(model_1f,
-                          data = elri_inv,
-                          group = "ano",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
+model_1f <- '
+  depression =~ g5_1 + g5_2 + g5_3 + g5_4 + g5_5 + g5_6 + g5_7 + g5_8 + g5_9
+'
 ```
 
-### Comparar modelos anidados
+
+### Función para realizar análisis de invarianza entre grupos para un año específico
 ```{r}
-anova(fit_1f_configural_year, fit_1f_metric_year)
-anova(fit_1f_metric_year, fit_1f_scalar_year)
+invariance_by_year <- function(data, year) {
+  data_year <- data %>% filter(ano == year)
+  
+  configural <- cfa(model_1f, data = data_year, group = "indi", estimator = "WLSMV", ordered = paste0("g5_", 1:9))
+  metric <- cfa(model_1f, data = data_year, group = "indi", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings"))
+  scalar <- cfa(model_1f, data = data_year, group = "indi", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings", "thresholds"))
+  
+  list(configural = configural, metric = metric, scalar = scalar)
+}
 ```
 
 
-### Modelo de dos factores
+### Realizar análisis de invarianza para cada año
 ```{r}
-fit_2f_configural_year <- cfa(model_2f,
-                              data = elri_inv,
-                              group = "ano",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2f_metric_year <- cfa(model_2f,
-                          data = elri_inv,
-                          group = "ano",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2f_scalar_year <- cfa(model_2f,
-                          data = elri_inv,
-                          group = "ano",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
+inv_2016 <- invariance_by_year(elri_inv, "2016")
+inv_2018 <- invariance_by_year(elri_inv, "2018")
+inv_2021 <- invariance_by_year(elri_inv, "2021")
+inv_2023 <- invariance_by_year(elri_inv, "2023")
 ```
 
 
-### Comparar modelos anidados
+### Función para realizar análisis de invarianza longitudinal para un grupo específico
 ```{r}
-anova(fit_2f_configural_year, fit_2f_metric_year)
-anova(fit_2f_metric_year, fit_2f_scalar_year)
+invariance_by_group <- function(data, group) {
+  data_group <- data %>% filter(indi == group)
+  
+  configural <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9))
+  metric <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings"))
+  scalar <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings", "thresholds"))
+  
+  list(configural = configural, metric = metric, scalar = scalar)
+}
 ```
 
 
-## Invarianza intergrupal (indi vs no_indi) para cada año 
+### Realizar análisis de invarianza longitudinal para cada grupo
+```{r}
+inv_indi <- invariance_by_group(elri_inv, "indi")
+inv_no_indi <- invariance_by_group(elri_inv, "no_indi")
+```
 
-### 2016 
-### Modelo de un factor
+
+### Comparar modelos anidados para cada análisis
+```{r}
+compare_models <- function(models) {
+  anova(models$configural, models$metric, models$scalar)
+}
+```
+
+
+### Comparaciones para invarianza entre grupos por año
+```{r}
+print("Invarianza entre grupos - 2016")
+print(compare_models(inv_2016))
+```
+
+
+Estos resultados sugieren que hay invarianza de medición entre los grupos indígenas y no indígenas en 2016. Esto implica que el PHQ-9 está midiendo el constructo de depresión de manera similar en ambos grupos para este año.
+
 
 ```{r}
-fit_2016_1f_configural <- cfa(model_1f,
-                              data = data_2016,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2016_1f_metric <- cfa(model_1f,
-                          data = data_2016,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2016_1f_scalar <- cfa(model_1f,
-                          data = data_2016,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
+print("Invarianza entre grupos - 2018")
+print(compare_models(inv_2018))
 ```
 
-### Comparar modelos anidados
+Estos resultados sugieren que hay invarianza de medición entre los grupos indígenas y no indígenas en 2018. Esto implica que el PHQ-9 está midiendo el constructo de depresión de manera similar en ambos grupos para este año, al igual que se observó en 2016.
+
+
 ```{r}
-anova(fit_2016_1f_configural, fit_2016_1f_metric)
-anova(fit_2016_1f_metric, fit_2016_1f_scalar)
+print("Invarianza entre grupos - 2021")
+print(compare_models(inv_2021))
 ```
 
-### Modelo de dos factores
+- Advertencias y consideraciones especiales:
+
+Hay una advertencia sobre modelos más restringidos que se ajustan mejor que los menos restringidos, lo cual es inusual y podría indicar problemas en la estimación del modelo. El resultado para la invarianza escalar es sospechoso, con un valor p de 1.00000, lo que es extremadamente raro y podría indicar problemas en la convergencia del modelo.
+
+Estos resultados sugieren que en 2021 no hay invarianza métrica entre los grupos indígenas y no indígenas, lo que implica que las cargas factoriales podrían ser diferentes entre los grupos. El resultado de la invarianza escalar es cuestionable debido a la advertencia y el valor p inusual.
+
+En comparación con años anteriores los resultados de 2021 son notablemente diferentes de los de 2016 y 2018, sugiriendo un cambio en cómo el PHQ-9 funciona entre los grupos en este año.
+
+- Recomendaciones:
+
+Investigar más a fondo los modelos para 2021, especialmente el modelo escalar. Considerar la posibilidad de invarianza parcial, donde solo algunas cargas factoriales se mantienen iguales entre los grupos. Examinar los índices de modificación para identificar fuentes específicas de no invarianza. Tener en cuenta factores contextuales (como la pandemia de COVID-19) que podrían haber afectado las respuestas al PHQ-9 de manera diferente entre los grupos en 2021.
+
+
 ```{r}
-fit_2016_2f_configural <- cfa(model_2f,
-                              data = data_2016,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2016_2f_metric <- cfa(model_2f,
-                          data = data_2016,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2016_2f_scalar <- cfa(model_2f,
-                          data = data_2016,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
+print("Invarianza entre grupos - 2023")
+print(compare_models(inv_2023))
 ```
 
-### Comparar modelos anidados
+
+Estos resultados sugieren que hay invarianza de medición entre los grupos indígenas y no indígenas en 2023. Esto implica que el PHQ-9 está midiendo el constructo de depresión de manera similar en ambos grupos para este año.
+
+Los resultados de 2023 son similares a los de 2016 y 2018, mostrando invarianza tanto métrica como escalar.
+
+El valor de chi-cuadrado base (236.00) es menor que en 2021 (366.19) y similar al de 2016 (229.68), lo que podría indicar un mejor ajuste general del modelo en 2023 comparado con 2021. Los valores p para las pruebas de diferencia son muy altos, especialmente para la invarianza escalar (0.9978), lo que indica un fuerte apoyo a la invarianza entre grupos.
+
+
+### Comparaciones para invarianza longitudinal por grupo
 ```{r}
-anova(fit_2016_2f_configural, fit_2016_2f_metric)
-anova(fit_2016_2f_metric, fit_2016_2f_scalar)
+print("Invarianza longitudinal - Indígena")
+print(compare_models(inv_indi))
 ```
 
 
-### 2018 
-### Modelo de un factor
 ```{r}
-
-fit_2018_1f_configural <- cfa(model_1f,
-                              data = data_2018,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2018_1f_metric <- cfa(model_1f,
-                          data = data_2018,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2018_1f_scalar <- cfa(model_1f,
-                          data = data_2018,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
+print("Invarianza longitudinal - No Indígena")
+print(compare_models(inv_no_indi))
 ```
 
-### Comparar modelos anidados
+### Sin el 2021
 ```{r}
-anova(fit_2018_1f_configural, fit_2018_1f_metric)
-anova(fit_2018_1f_metric, fit_2018_1f_scalar)
+# Filtrar los datos excluyendo 2021
+elri_inv_no_2021 <- elri_inv %>% filter(ano != "2021")
+
+# Función para realizar análisis de invarianza longitudinal para un grupo específico
+invariance_by_group_no_2021 <- function(data, group) {
+  data_group <- data %>% filter(indi == group)
+  
+  configural <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9))
+  metric <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings"))
+  scalar <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings", "thresholds"))
+  
+  list(configural = configural, metric = metric, scalar = scalar)
+}
+
+# Realizar análisis de invarianza longitudinal para el grupo indígena sin 2021
+inv_indi_no_2021 <- invariance_by_group_no_2021(elri_inv_no_2021, "indi")
+
+# Comparar modelos anidados
+print("Invarianza longitudinal - Indígena (sin 2021)")
+print(compare_models(inv_indi_no_2021))
 ```
 
-### Modelo de dos factores
+Aunque el valor p (0.001057) es menor que el umbral convencional de 0.05, es considerablemente mayor que en el análisis que incluía 2021. Esto sugiere una mejora en la invarianza métrica, aunque todavía no se alcanza completamente. Invarianza Escalar: Sigue sin mantenerse, con un cambio en chi-cuadrado altamente significativo (p < 2.2e-16).
+
+La exclusión de 2021 ha mejorado la invarianza métrica, aunque no lo suficiente para alcanzar el umbral convencional de no significación. Esto sugiere que las cargas factoriales son más estables entre 2016, 2018 y 2023, pero aún hay algunas diferencias significativas. Incluso sin 2021, sigue habiendo una falta significativa de invarianza escalar. Esto indica que los interceptos de los ítems varían considerablemente a lo largo del tiempo.
+
+- Implicaciones
+
+El año 2021 parece haber contribuido a la falta de invarianza, pero no es la única fuente de variabilidad en la medición a lo largo del tiempo. Aunque hay una mejora en la estabilidad de las cargas factoriales (invarianza métrica), la interpretación de las puntuaciones del PHQ-9 sigue siendo inconsistente a lo largo de los años para el grupo indígena. Las comparaciones de medias latentes o puntuaciones observadas del PHQ-9 a lo largo del tiempo siguen siendo problemáticas, incluso excluyendo 2021.
+
+- Recomendaciones
+
+  - Investigar qué ítems específicos están contribuyendo a la falta de invarianza escalar, ya que este es el problema más persistente.
+  - Considerar la posibilidad de invarianza parcial, donde solo algunos parámetros se mantienen iguales a lo largo del tiempo.
+  - Explorar factores culturales o contextuales que podrían estar influyendo en los cambios en la interpretación o respuesta al PHQ-9 a lo largo del tiempo en el grupo indígena, más allá de los eventos específicos de 2021.
+  - Evaluar si hay diferencias sistemáticas entre pares de años específicos (por ejemplo, 2016 vs. 2018, 2018 vs. 2023) que puedan estar contribuyendo a la falta de invarianza.
+  - Considerar la posibilidad de que el constructo de depresión, tal como lo mide el PHQ-9, pueda estar evolucionando conceptualmente a lo largo del tiempo para este grupo.
+
+
 ```{r}
-fit_2018_2f_configural <- cfa(model_2f,
-                              data = data_2018,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
+# Asumiendo que ya tienes cargadas las bibliotecas necesarias y el modelo definido
 
-fit_2018_2f_metric <- cfa(model_2f,
-                          data = data_2018,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
+# Filtrar los datos excluyendo 2021
+elri_inv_no_2021 <- elri_inv %>% filter(ano != "2021")
 
-fit_2018_2f_scalar <- cfa(model_2f,
-                          data = data_2018,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
+# Función para realizar análisis de invarianza longitudinal para un grupo específico
+invariance_by_group_no_2021 <- function(data, group) {
+  data_group <- data %>% filter(indi == group)
+  
+  configural <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9))
+  metric <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings"))
+  scalar <- cfa(model_1f, data = data_group, group = "ano", estimator = "WLSMV", ordered = paste0("g5_", 1:9),
+                group.equal = c("loadings", "thresholds"))
+  
+  list(configural = configural, metric = metric, scalar = scalar)
+}
+
+# Realizar análisis de invarianza longitudinal para el grupo no indígena sin 2021
+inv_no_indi_no_2021 <- invariance_by_group_no_2021(elri_inv_no_2021, "no_indi")
+
+# Comparar modelos anidados
+print("Invarianza longitudinal - No Indígena (sin 2021)")
+print(compare_models(inv_no_indi_no_2021))
 ```
-
-
-### Comparar modelos anidados
-```{r}
-anova(fit_2018_2f_configural, fit_2018_2f_metric)
-anova(fit_2018_2f_metric, fit_2018_2f_scalar)
-```
-
-
-### 2021 
-### Modelo de un factor  
-```{r}
-fit_2021_1f_configural <- cfa(model_1f,
-                              data = data_2021,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2021_1f_metric <- cfa(model_1f,
-                          data = data_2021,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2021_1f_scalar <- cfa(model_1f,
-                          data = data_2021,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-```
-
-### Comparar modelos anidados
-```{r}
-anova(fit_2021_1f_configural, fit_2021_1f_metric)
-anova(fit_2021_1f_metric, fit_2021_1f_scalar)
-```
-
-
-### Modelo de dos factores
-```{r}
-fit_2021_2f_configural <- cfa(model_2f,
-                              data = data_2021,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2021_2f_metric <- cfa(model_2f,
-                          data = data_2021,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2021_2f_scalar <- cfa(model_2f,
-                          data = data_2021,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-```
-
-
-### Comparar modelos anidados
-```{r}
-anova(fit_2021_2f_configural, fit_2021_2f_metric)
-anova(fit_2021_2f_metric, fit_2021_2f_scalar)
-```
-
-
-### 2023 
-### Modelo de un factor
-```{r}
-fit_2023_1f_configural <- cfa(model_1f,
-                              data = data_2023,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2023_1f_metric <- cfa(model_1f,
-                          data = data_2023,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2023_1f_scalar <- cfa(model_1f,
-                          data = data_2023,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-```
-
-
-### Comparar modelos anidados
-```{r}
-anova(fit_2023_1f_configural, fit_2023_1f_metric)
-anova(fit_2023_1f_metric, fit_2023_1f_scalar)
-```
-
-
-### Modelo de dos factores
-```{r}
-fit_2023_2f_configural <- cfa(model_2f,
-                              data = data_2023,
-                              group = "indi",
-                              estimator = "WLSMV",
-                              ordered = paste0("g5_", 1:9))
-
-fit_2023_2f_metric <- cfa(model_2f,
-                          data = data_2023,
-                          group = "indi",
-                          group.equal = c("loadings"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-
-fit_2023_2f_scalar <- cfa(model_2f,
-                          data = data_2023,
-                          group = "indi",
-                          group.equal = c("loadings", "thresholds"),
-                          estimator = "WLSMV",
-                          ordered = paste0("g5_", 1:9))
-```
-
-
-### Comparar modelos anidados
-```{r}
-anova(fit_2023_2f_configural, fit_2023_2f_metric)
-anova(fit_2023_2f_metric, fit_2023_2f_scalar)
-```
-
-
-
-
-
-
-
-
 
 
 

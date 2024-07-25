@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Roberto Cantillan | Matías Deneken">
-<meta name="dcterms.date" content="2024-07-22">
+<meta name="dcterms.date" content="2024-07-25">
 
 <title>Análisis invarianza PHQ9</title>
 <style>
@@ -92,7 +92,7 @@ div.csl-indent {
   body::before {
     content: url('img/ciir_en-negro-vertical.jpg');
     display: block;
-    text-align: center;
+    text-align: left;
     margin-bottom: 5px; /* Reducido a 5px para un espacio mínimo */
     transform: scale(0.5);
   }
@@ -121,52 +121,60 @@ div.csl-indent {
     <h2 id="toc-title">Contenidos</h2>
    
   <ul>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">0.1</span> Introducción</a>
   <ul class="collapse">
-  <li><a href="#modelo-básico-de-análisis-factorial" id="toc-modelo-básico-de-análisis-factorial" class="nav-link" data-scroll-target="#modelo-básico-de-análisis-factorial"><span class="header-section-number">1.1</span> Modelo Básico de Análisis Factorial</a></li>
-  <li><a href="#modelo-de-covarianza" id="toc-modelo-de-covarianza" class="nav-link" data-scroll-target="#modelo-de-covarianza"><span class="header-section-number">1.2</span> Modelo de Covarianza</a></li>
-  <li><a href="#modelo-de-media" id="toc-modelo-de-media" class="nav-link" data-scroll-target="#modelo-de-media"><span class="header-section-number">1.3</span> Modelo de Media</a></li>
+  <li><a href="#modelo-básico-de-análisis-factorial" id="toc-modelo-básico-de-análisis-factorial" class="nav-link" data-scroll-target="#modelo-básico-de-análisis-factorial"><span class="header-section-number">0.1.1</span> Modelo Básico de Análisis Factorial</a></li>
+  <li><a href="#modelo-de-covarianza" id="toc-modelo-de-covarianza" class="nav-link" data-scroll-target="#modelo-de-covarianza"><span class="header-section-number">0.1.2</span> Modelo de Covarianza</a></li>
+  <li><a href="#modelo-de-media" id="toc-modelo-de-media" class="nav-link" data-scroll-target="#modelo-de-media"><span class="header-section-number">0.1.3</span> Modelo de Media</a></li>
   </ul></li>
-  <li><a href="#modelos-de-múltiples-grupos-u-ocasiones" id="toc-modelos-de-múltiples-grupos-u-ocasiones" class="nav-link" data-scroll-target="#modelos-de-múltiples-grupos-u-ocasiones"><span class="header-section-number">2</span> Modelos de Múltiples Grupos u Ocasiones</a>
+  <li><a href="#modelos-de-múltiples-grupos-u-ocasiones" id="toc-modelos-de-múltiples-grupos-u-ocasiones" class="nav-link" data-scroll-target="#modelos-de-múltiples-grupos-u-ocasiones"><span class="header-section-number">0.2</span> Modelos de Múltiples Grupos u Ocasiones</a>
   <ul class="collapse">
-  <li><a href="#niveles-de-invarianza-de-medición" id="toc-niveles-de-invarianza-de-medición" class="nav-link" data-scroll-target="#niveles-de-invarianza-de-medición"><span class="header-section-number">2.1</span> Niveles de Invarianza de Medición</a></li>
+  <li><a href="#niveles-de-invarianza-de-medición" id="toc-niveles-de-invarianza-de-medición" class="nav-link" data-scroll-target="#niveles-de-invarianza-de-medición"><span class="header-section-number">0.2.1</span> Niveles de Invarianza de Medición</a></li>
   </ul></li>
-  <li><a href="#análisis-invarianza-elri---phq9" id="toc-análisis-invarianza-elri---phq9" class="nav-link" data-scroll-target="#análisis-invarianza-elri---phq9"><span class="header-section-number">3</span> Análisis Invarianza ELRI - PHQ9</a>
+  <li><a href="#análisis-invarianza-elri---phq9" id="toc-análisis-invarianza-elri---phq9" class="nav-link" data-scroll-target="#análisis-invarianza-elri---phq9"><span class="header-section-number">0.3</span> Análisis Invarianza ELRI - PHQ9</a></li>
+  <li><a href="#estrategia-de-análisis" id="toc-estrategia-de-análisis" class="nav-link" data-scroll-target="#estrategia-de-análisis"><span class="header-section-number">1</span> estrategia de análisis</a>
   <ul class="collapse">
-  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">3.1</span> Load data</a></li>
-  <li><a href="#seleccionar-datos" id="toc-seleccionar-datos" class="nav-link" data-scroll-target="#seleccionar-datos"><span class="header-section-number">3.2</span> seleccionar datos</a></li>
-  <li><a href="#separar-datos-por-año" id="toc-separar-datos-por-año" class="nav-link" data-scroll-target="#separar-datos-por-año"><span class="header-section-number">3.3</span> Separar datos por año</a></li>
-  <li><a href="#separar-datos-por-grupo-indino_indi" id="toc-separar-datos-por-grupo-indino_indi" class="nav-link" data-scroll-target="#separar-datos-por-grupo-indino_indi"><span class="header-section-number">3.4</span> Separar datos por grupo indi/no_indi</a></li>
+  <li><a href="#preparación-de-datos" id="toc-preparación-de-datos" class="nav-link" data-scroll-target="#preparación-de-datos"><span class="header-section-number">1.1</span> Preparación de datos</a></li>
+  <li><a href="#análisis-descriptivo" id="toc-análisis-descriptivo" class="nav-link" data-scroll-target="#análisis-descriptivo"><span class="header-section-number">1.2</span> Análisis descriptivo</a></li>
+  <li><a href="#especificación-del-modelo-de-medición" id="toc-especificación-del-modelo-de-medición" class="nav-link" data-scroll-target="#especificación-del-modelo-de-medición"><span class="header-section-number">1.3</span> Especificación del modelo de medición:</a></li>
+  <li><a href="#análisis-factorial-confirmatorio-cfa-inicial" id="toc-análisis-factorial-confirmatorio-cfa-inicial" class="nav-link" data-scroll-target="#análisis-factorial-confirmatorio-cfa-inicial"><span class="header-section-number">1.4</span> Análisis Factorial Confirmatorio (CFA) inicial:</a></li>
+  <li><a href="#análisis-de-invarianza-multigrupo-longitudinal" id="toc-análisis-de-invarianza-multigrupo-longitudinal" class="nav-link" data-scroll-target="#análisis-de-invarianza-multigrupo-longitudinal"><span class="header-section-number">1.5</span> Análisis de invarianza multigrupo-longitudinal:</a></li>
+  <li><a href="#evaluación-de-la-invarianza" id="toc-evaluación-de-la-invarianza" class="nav-link" data-scroll-target="#evaluación-de-la-invarianza"><span class="header-section-number">1.6</span> Evaluación de la invarianza:</a></li>
+  <li><a href="#manejo-de-la-no-invarianza" id="toc-manejo-de-la-no-invarianza" class="nav-link" data-scroll-target="#manejo-de-la-no-invarianza"><span class="header-section-number">1.7</span> Manejo de la no invarianza:</a></li>
+  <li><a href="#análisis-de-sensibilidad" id="toc-análisis-de-sensibilidad" class="nav-link" data-scroll-target="#análisis-de-sensibilidad"><span class="header-section-number">1.8</span> Análisis de sensibilidad:</a>
+  <ul class="collapse">
+  <li><a href="#preparación-datos" id="toc-preparación-datos" class="nav-link" data-scroll-target="#preparación-datos"><span class="header-section-number">1.8.1</span> Preparación datos</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">1.8.2</span> Load data</a></li>
+  <li><a href="#seleccionar-datos" id="toc-seleccionar-datos" class="nav-link" data-scroll-target="#seleccionar-datos"><span class="header-section-number">1.8.3</span> seleccionar datos</a></li>
+  <li><a href="#asegurar-que-indi-y-ano-sean-factores" id="toc-asegurar-que-indi-y-ano-sean-factores" class="nav-link" data-scroll-target="#asegurar-que-indi-y-ano-sean-factores"><span class="header-section-number">1.8.4</span> Asegurar que ‘indi’ y ‘ano’ sean factores</a></li>
   </ul></li>
-  <li><a href="#definir-modelos-de-medición" id="toc-definir-modelos-de-medición" class="nav-link" data-scroll-target="#definir-modelos-de-medición"><span class="header-section-number">4</span> Definir modelos de medición</a></li>
-  <li><a href="#invarianza-longitudinal" id="toc-invarianza-longitudinal" class="nav-link" data-scroll-target="#invarianza-longitudinal"><span class="header-section-number">5</span> Invarianza longitudinal</a>
+  <li><a href="#análisis-descriptivo-1" id="toc-análisis-descriptivo-1" class="nav-link" data-scroll-target="#análisis-descriptivo-1"><span class="header-section-number">1.9</span> Análisis descriptivo</a>
   <ul class="collapse">
-  <li><a href="#comparar-modelos-anidados" id="toc-comparar-modelos-anidados" class="nav-link" data-scroll-target="#comparar-modelos-anidados"><span class="header-section-number">5.1</span> Comparar modelos anidados</a></li>
-  <li><a href="#modelo-de-dos-factores" id="toc-modelo-de-dos-factores" class="nav-link" data-scroll-target="#modelo-de-dos-factores"><span class="header-section-number">5.2</span> Modelo de dos factores</a></li>
-  <li><a href="#comparar-modelos-anidados-1" id="toc-comparar-modelos-anidados-1" class="nav-link" data-scroll-target="#comparar-modelos-anidados-1"><span class="header-section-number">5.3</span> Comparar modelos anidados</a></li>
+  <li><a href="#estadísticas-descriptivas-por-grupo-y-año" id="toc-estadísticas-descriptivas-por-grupo-y-año" class="nav-link" data-scroll-target="#estadísticas-descriptivas-por-grupo-y-año"><span class="header-section-number">1.9.1</span> Estadísticas descriptivas por grupo y año</a></li>
   </ul></li>
-  <li><a href="#invarianza-intergrupal-indi-vs-no_indi-para-cada-año" id="toc-invarianza-intergrupal-indi-vs-no_indi-para-cada-año" class="nav-link" data-scroll-target="#invarianza-intergrupal-indi-vs-no_indi-para-cada-año"><span class="header-section-number">6</span> Invarianza intergrupal (indi vs no_indi) para cada año</a>
+  <li><a href="#matrices-de-correlación-por-grupo-y-año" id="toc-matrices-de-correlación-por-grupo-y-año" class="nav-link" data-scroll-target="#matrices-de-correlación-por-grupo-y-año"><span class="header-section-number">1.10</span> Matrices de correlación por grupo y año</a></li>
+  <li><a href="#especificación-del-modelo-de-medición-1" id="toc-especificación-del-modelo-de-medición-1" class="nav-link" data-scroll-target="#especificación-del-modelo-de-medición-1"><span class="header-section-number">1.11</span> Especificación del modelo de medición</a></li>
+  <li><a href="#análisis-factorial-confirmatorio-cfa-inicial-1" id="toc-análisis-factorial-confirmatorio-cfa-inicial-1" class="nav-link" data-scroll-target="#análisis-factorial-confirmatorio-cfa-inicial-1"><span class="header-section-number">1.12</span> Análisis Factorial Confirmatorio (CFA) inicial</a>
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6.1</span> 2016</a></li>
-  <li><a href="#modelo-de-un-factor" id="toc-modelo-de-un-factor" class="nav-link" data-scroll-target="#modelo-de-un-factor"><span class="header-section-number">6.2</span> Modelo de un factor</a></li>
-  <li><a href="#comparar-modelos-anidados-2" id="toc-comparar-modelos-anidados-2" class="nav-link" data-scroll-target="#comparar-modelos-anidados-2"><span class="header-section-number">6.3</span> Comparar modelos anidados</a></li>
-  <li><a href="#modelo-de-dos-factores-1" id="toc-modelo-de-dos-factores-1" class="nav-link" data-scroll-target="#modelo-de-dos-factores-1"><span class="header-section-number">6.4</span> Modelo de dos factores</a></li>
-  <li><a href="#comparar-modelos-anidados-3" id="toc-comparar-modelos-anidados-3" class="nav-link" data-scroll-target="#comparar-modelos-anidados-3"><span class="header-section-number">6.5</span> Comparar modelos anidados</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">6.6</span> 2018</a></li>
-  <li><a href="#modelo-de-un-factor-1" id="toc-modelo-de-un-factor-1" class="nav-link" data-scroll-target="#modelo-de-un-factor-1"><span class="header-section-number">6.7</span> Modelo de un factor</a></li>
-  <li><a href="#comparar-modelos-anidados-4" id="toc-comparar-modelos-anidados-4" class="nav-link" data-scroll-target="#comparar-modelos-anidados-4"><span class="header-section-number">6.8</span> Comparar modelos anidados</a></li>
-  <li><a href="#modelo-de-dos-factores-2" id="toc-modelo-de-dos-factores-2" class="nav-link" data-scroll-target="#modelo-de-dos-factores-2"><span class="header-section-number">6.9</span> Modelo de dos factores</a></li>
-  <li><a href="#comparar-modelos-anidados-5" id="toc-comparar-modelos-anidados-5" class="nav-link" data-scroll-target="#comparar-modelos-anidados-5"><span class="header-section-number">6.10</span> Comparar modelos anidados</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">6.11</span> 2021</a></li>
-  <li><a href="#modelo-de-un-factor-2" id="toc-modelo-de-un-factor-2" class="nav-link" data-scroll-target="#modelo-de-un-factor-2"><span class="header-section-number">6.12</span> Modelo de un factor</a></li>
-  <li><a href="#comparar-modelos-anidados-6" id="toc-comparar-modelos-anidados-6" class="nav-link" data-scroll-target="#comparar-modelos-anidados-6"><span class="header-section-number">6.13</span> Comparar modelos anidados</a></li>
-  <li><a href="#modelo-de-dos-factores-3" id="toc-modelo-de-dos-factores-3" class="nav-link" data-scroll-target="#modelo-de-dos-factores-3"><span class="header-section-number">6.14</span> Modelo de dos factores</a></li>
-  <li><a href="#comparar-modelos-anidados-7" id="toc-comparar-modelos-anidados-7" class="nav-link" data-scroll-target="#comparar-modelos-anidados-7"><span class="header-section-number">6.15</span> Comparar modelos anidados</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">6.16</span> 2023</a></li>
-  <li><a href="#modelo-de-un-factor-3" id="toc-modelo-de-un-factor-3" class="nav-link" data-scroll-target="#modelo-de-un-factor-3"><span class="header-section-number">6.17</span> Modelo de un factor</a></li>
-  <li><a href="#comparar-modelos-anidados-8" id="toc-comparar-modelos-anidados-8" class="nav-link" data-scroll-target="#comparar-modelos-anidados-8"><span class="header-section-number">6.18</span> Comparar modelos anidados</a></li>
-  <li><a href="#modelo-de-dos-factores-4" id="toc-modelo-de-dos-factores-4" class="nav-link" data-scroll-target="#modelo-de-dos-factores-4"><span class="header-section-number">6.19</span> Modelo de dos factores</a></li>
-  <li><a href="#comparar-modelos-anidados-9" id="toc-comparar-modelos-anidados-9" class="nav-link" data-scroll-target="#comparar-modelos-anidados-9"><span class="header-section-number">6.20</span> Comparar modelos anidados</a></li>
+  <li><a href="#cfa-para-cada-combinación-de-grupo-y-año" id="toc-cfa-para-cada-combinación-de-grupo-y-año" class="nav-link" data-scroll-target="#cfa-para-cada-combinación-de-grupo-y-año"><span class="header-section-number">1.12.1</span> CFA para cada combinación de grupo y año</a></li>
+  <li><a href="#cfi-índice-de-ajuste-comparativo" id="toc-cfi-índice-de-ajuste-comparativo" class="nav-link" data-scroll-target="#cfi-índice-de-ajuste-comparativo"><span class="header-section-number">1.12.2</span> CFI (Índice de Ajuste Comparativo)</a></li>
+  <li><a href="#tli-índice-de-tucker-lewis" id="toc-tli-índice-de-tucker-lewis" class="nav-link" data-scroll-target="#tli-índice-de-tucker-lewis"><span class="header-section-number">1.12.3</span> TLI (Índice de Tucker-Lewis):</a></li>
+  <li><a href="#rmsea-error-cuadrático-medio-de-aproximación" id="toc-rmsea-error-cuadrático-medio-de-aproximación" class="nav-link" data-scroll-target="#rmsea-error-cuadrático-medio-de-aproximación"><span class="header-section-number">1.12.4</span> RMSEA (Error Cuadrático Medio de Aproximación):</a></li>
+  <li><a href="#srmr-raíz-cuadrada-media-residual-estandarizada" id="toc-srmr-raíz-cuadrada-media-residual-estandarizada" class="nav-link" data-scroll-target="#srmr-raíz-cuadrada-media-residual-estandarizada"><span class="header-section-number">1.12.5</span> SRMR (Raíz Cuadrada Media Residual Estandarizada):</a></li>
+  <li><a href="#en-general" id="toc-en-general" class="nav-link" data-scroll-target="#en-general"><span class="header-section-number">1.12.6</span> En general:</a></li>
+  </ul></li>
+  <li><a href="#análisis-de-invarianza-multigrupo-longitudinal-1" id="toc-análisis-de-invarianza-multigrupo-longitudinal-1" class="nav-link" data-scroll-target="#análisis-de-invarianza-multigrupo-longitudinal-1"><span class="header-section-number">1.13</span> Análisis de invarianza multigrupo-longitudinal</a>
+  <ul class="collapse">
+  <li><a href="#modelo-de-un-factor" id="toc-modelo-de-un-factor" class="nav-link" data-scroll-target="#modelo-de-un-factor"><span class="header-section-number">1.13.1</span> Modelo de un factor</a></li>
+  <li><a href="#función-para-realizar-análisis-de-invarianza-entre-grupos-para-un-año-específico" id="toc-función-para-realizar-análisis-de-invarianza-entre-grupos-para-un-año-específico" class="nav-link" data-scroll-target="#función-para-realizar-análisis-de-invarianza-entre-grupos-para-un-año-específico"><span class="header-section-number">1.13.2</span> Función para realizar análisis de invarianza entre grupos para un año específico</a></li>
+  <li><a href="#realizar-análisis-de-invarianza-para-cada-año" id="toc-realizar-análisis-de-invarianza-para-cada-año" class="nav-link" data-scroll-target="#realizar-análisis-de-invarianza-para-cada-año"><span class="header-section-number">1.13.3</span> Realizar análisis de invarianza para cada año</a></li>
+  <li><a href="#función-para-realizar-análisis-de-invarianza-longitudinal-para-un-grupo-específico" id="toc-función-para-realizar-análisis-de-invarianza-longitudinal-para-un-grupo-específico" class="nav-link" data-scroll-target="#función-para-realizar-análisis-de-invarianza-longitudinal-para-un-grupo-específico"><span class="header-section-number">1.13.4</span> Función para realizar análisis de invarianza longitudinal para un grupo específico</a></li>
+  <li><a href="#realizar-análisis-de-invarianza-longitudinal-para-cada-grupo" id="toc-realizar-análisis-de-invarianza-longitudinal-para-cada-grupo" class="nav-link" data-scroll-target="#realizar-análisis-de-invarianza-longitudinal-para-cada-grupo"><span class="header-section-number">1.13.5</span> Realizar análisis de invarianza longitudinal para cada grupo</a></li>
+  <li><a href="#comparar-modelos-anidados-para-cada-análisis" id="toc-comparar-modelos-anidados-para-cada-análisis" class="nav-link" data-scroll-target="#comparar-modelos-anidados-para-cada-análisis"><span class="header-section-number">1.13.6</span> Comparar modelos anidados para cada análisis</a></li>
+  <li><a href="#comparaciones-para-invarianza-entre-grupos-por-año" id="toc-comparaciones-para-invarianza-entre-grupos-por-año" class="nav-link" data-scroll-target="#comparaciones-para-invarianza-entre-grupos-por-año"><span class="header-section-number">1.13.7</span> Comparaciones para invarianza entre grupos por año</a></li>
+  <li><a href="#comparaciones-para-invarianza-longitudinal-por-grupo" id="toc-comparaciones-para-invarianza-longitudinal-por-grupo" class="nav-link" data-scroll-target="#comparaciones-para-invarianza-longitudinal-por-grupo"><span class="header-section-number">1.13.8</span> Comparaciones para invarianza longitudinal por grupo</a></li>
+  <li><a href="#sin-el-2021" id="toc-sin-el-2021" class="nav-link" data-scroll-target="#sin-el-2021"><span class="header-section-number">1.13.9</span> Sin el 2021</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -193,7 +201,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 22, 2024</p>
+      <p class="date">July 25, 2024</p>
     </div>
   </div>
   
@@ -203,10 +211,10 @@ div.csl-indent {
 
 </header>
 
-<section id="introducción" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
-<section id="modelo-básico-de-análisis-factorial" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="modelo-básico-de-análisis-factorial"><span class="header-section-number">1.1</span> Modelo Básico de Análisis Factorial</h3>
+<section id="introducción" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">0.1</span> Introducción</h2>
+<section id="modelo-básico-de-análisis-factorial" class="level3" data-number="0.1.1">
+<h3 data-number="0.1.1" class="anchored" data-anchor-id="modelo-básico-de-análisis-factorial"><span class="header-section-number">0.1.1</span> Modelo Básico de Análisis Factorial</h3>
 <p>El modelo básico se expresa como:</p>
 <p><span class="math display">\[Y_i = \Lambda F_i + U_i\]</span></p>
 <p>Este modelo describe cómo las variables observadas (<span class="math inline">\(Y_i\)</span>) se relacionan con factores latentes subyacentes (<span class="math inline">\(F_i\)</span>) y factores únicos (<span class="math inline">\(U_i\)</span>).</p>
@@ -217,8 +225,8 @@ div.csl-indent {
 <li><span class="math inline">\(\Lambda\)</span> contiene las cargas factoriales, que indican cuánto influye cada factor en cada variable observada.</li>
 </ul>
 </section>
-<section id="modelo-de-covarianza" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="modelo-de-covarianza"><span class="header-section-number">1.2</span> Modelo de Covarianza</h3>
+<section id="modelo-de-covarianza" class="level3" data-number="0.1.2">
+<h3 data-number="0.1.2" class="anchored" data-anchor-id="modelo-de-covarianza"><span class="header-section-number">0.1.2</span> Modelo de Covarianza</h3>
 <p><span class="math display">\[\Sigma = \Lambda \Psi \Lambda' + \Theta\]</span></p>
 <p>Este modelo describe la estructura de covarianza de las variables observadas.</p>
 <ul>
@@ -228,8 +236,8 @@ div.csl-indent {
 </ul>
 <p>Este modelo nos permite entender cómo se relacionan las variables observadas entre sí a través de los factores latentes.</p>
 </section>
-<section id="modelo-de-media" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="modelo-de-media"><span class="header-section-number">1.3</span> Modelo de Media</h3>
+<section id="modelo-de-media" class="level3" data-number="0.1.3">
+<h3 data-number="0.1.3" class="anchored" data-anchor-id="modelo-de-media"><span class="header-section-number">0.1.3</span> Modelo de Media</h3>
 <p><span class="math display">\[\mu = \tau + \Lambda \alpha\]</span></p>
 <p>Este modelo describe las medias de las variables observadas.</p>
 <ul>
@@ -240,16 +248,16 @@ div.csl-indent {
 <p>Este modelo nos ayuda a entender cómo los factores latentes influyen en las medias de las variables observadas.</p>
 </section>
 </section>
-<section id="modelos-de-múltiples-grupos-u-ocasiones" class="level2 page-columns page-full" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="modelos-de-múltiples-grupos-u-ocasiones"><span class="header-section-number">2</span> Modelos de Múltiples Grupos u Ocasiones</h2>
+<section id="modelos-de-múltiples-grupos-u-ocasiones" class="level2 page-columns page-full" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="modelos-de-múltiples-grupos-u-ocasiones"><span class="header-section-number">0.2</span> Modelos de Múltiples Grupos u Ocasiones</h2>
 <p><span class="math display">\[\Sigma_g = \Lambda_g \Psi_g \Lambda_g' + \Theta_g\]</span> <span class="math display">\[\mu_g = \tau_g + \Lambda_g \alpha_g\]</span></p>
 <p>Estos modelos extienden los anteriores a situaciones donde tenemos múltiples grupos o mediciones en diferentes momentos.</p>
 <ul>
 <li>El subíndice <span class="math inline">\(g\)</span> indica que los parámetros pueden variar entre grupos u ocasiones.</li>
 <li>Nos permiten comparar la estructura factorial entre diferentes poblaciones o a lo largo del tiempo.</li>
 </ul>
-<section id="niveles-de-invarianza-de-medición" class="level3 page-columns page-full" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="niveles-de-invarianza-de-medición"><span class="header-section-number">2.1</span> Niveles de Invarianza de Medición</h3>
+<section id="niveles-de-invarianza-de-medición" class="level3 page-columns page-full" data-number="0.2.1">
+<h3 data-number="0.2.1" class="anchored" data-anchor-id="niveles-de-invarianza-de-medición"><span class="header-section-number">0.2.1</span> Niveles de Invarianza de Medición</h3>
 <ol type="1">
 <li><strong>Invarianza Configural</strong>:
 <ul>
@@ -277,8 +285,8 @@ div.csl-indent {
 Rosseel, Yves, Terrence D. Jorgensen, and Luc De Wilde. 2012. <span>“Lavaan: <span>Latent Variable Analysis</span>.”</span> Comprehensive R Archive Network. <a href="https://doi.org/10.32614/CRAN.package.lavaan">https://doi.org/10.32614/CRAN.package.lavaan</a>.
 </div></div></section>
 </section>
-<section id="análisis-invarianza-elri---phq9" class="level2 page-columns page-full" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="análisis-invarianza-elri---phq9"><span class="header-section-number">3</span> Análisis Invarianza ELRI - PHQ9</h2>
+<section id="análisis-invarianza-elri---phq9" class="level2 page-columns page-full" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="análisis-invarianza-elri---phq9"><span class="header-section-number">0.3</span> Análisis Invarianza ELRI - PHQ9</h2>
 <p>El Cuestionario de Salud del Paciente-9 (PHQ-9) es una herramienta ampliamente utilizada para evaluar síntomas depresivos. Sin embargo, es crucial asegurar que este instrumento mantenga su validez y fiabilidad al aplicarse en diferentes grupos culturales y a lo largo del tiempo. Este reporte describe la estrategia propuesta para evaluar la invarianza de medición del PHQ-9 entre poblaciones indígenas y no indígenas, así como su invarianza longitudinal.</p>
 <ul>
 <li><p>Nuestro estudio se centrará en dos aspectos principales:</p>
@@ -287,56 +295,93 @@ Rosseel, Yves, Terrence D. Jorgensen, and Luc De Wilde. 2012. <span>“Lavaan: <
 <li>Invarianza longitudinal: Evaluación de la consistencia de las mediciones a lo largo del tiempo.</li>
 </ul></li>
 </ul>
-<p>Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por <span class="citation" data-cites="saundersMeasurementInvariancePHQ92023">Saunders et al. (<a href="#ref-saundersMeasurementInvariancePHQ92023" role="doc-biblioref">2023</a>)</span> en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros.</p>
+<p>Para abordar estos objetivos, adoptaremos una metodología basada en el Análisis Factorial Confirmatorio Multigrupo (MGCFA), siguiendo un enfoque similar al utilizado por <span class="citation" data-cites="saundersMeasurementInvariancePHQ92023">Saunders et al. (<a href="#ref-saundersMeasurementInvariancePHQ92023" role="doc-biblioref">2023</a>)</span> en su estudio sobre la invarianza del PHQ-9 y GAD-7 entre géneros y, tambien, el realizado por Harry et al. <span class="citation" data-cites="harryEvaluatingCrossculturalMeasurement2021">Harry et al. (<a href="#ref-harryEvaluatingCrossculturalMeasurement2021" role="doc-biblioref">2021</a>)</span> que realiza análisis de invarianza del PHQ9 entre diferentes grupos étnicos.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-saundersMeasurementInvariancePHQ92023" class="csl-entry" role="listitem">
 Saunders, Rob, Delilah Moinian, Joshua Stott, Henry Delamain, Syed Ali Naqvi, Satwant Singh, Jon Wheatley, Stephen Pilling, and Joshua E. J. Buckman. 2023. <span>“Measurement Invariance of the <span>PHQ-9</span> and <span>GAD-7</span> Across Males and Females Seeking Treatment for Common Mental Health Disorders.”</span> <em>BMC Psychiatry</em> 23 (1): 298. <a href="https://doi.org/10.1186/s12888-023-04804-x">https://doi.org/10.1186/s12888-023-04804-x</a>.
-</div></div><p>Propuesta de Análisis:</p>
-<ol type="1">
-<li>Análisis Factorial Confirmatorio (CFA) Inicial</li>
+</div><div id="ref-harryEvaluatingCrossculturalMeasurement2021" class="csl-entry" role="listitem">
+Harry, Melissa L., R. Yates Coley, Stephen C. Waring, and Gregory E. Simon. 2021. <span>“Evaluating the Cross-Cultural Measurement Invariance of the <span>PHQ-9</span> Between <span>American Indian</span>/<span>Alaska Native</span> Adults and Diverse Racial and Ethnic Groups.”</span> <em>Journal of Affective Disorders Reports</em> 4 (April): 100121. <a href="https://doi.org/10.1016/j.jadr.2021.100121">https://doi.org/10.1016/j.jadr.2021.100121</a>.
+</div></div></section>
+<section id="estrategia-de-análisis" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> estrategia de análisis</h1>
+<section id="preparación-de-datos" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="preparación-de-datos"><span class="header-section-number">1.1</span> Preparación de datos</h2>
+<ul>
+<li>Organizar los datos en formato longitudinal, con cada participante teniendo múltiples puntos de tiempo.</li>
+<li>Codificar las variables de grupo (indígena vs.&nbsp;no indígena) y tiempo.</li>
+</ul>
+</section>
+<section id="análisis-descriptivo" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="análisis-descriptivo"><span class="header-section-number">1.2</span> Análisis descriptivo</h2>
+<ul>
+<li>Calcular estadísticas descriptivas para los ítems del PHQ-9 en cada punto de tiempo y para cada grupo.</li>
+<li>Generar matrices de correlación y visualizarlas con mapas de calor.</li>
+</ul>
+</section>
+<section id="especificación-del-modelo-de-medición" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="especificación-del-modelo-de-medición"><span class="header-section-number">1.3</span> Especificación del modelo de medición:</h2>
+<ul>
+<li>Definir el modelo de un factor para el PHQ-9, donde los 9 ítems cargan en un factor latente de depresión.</li>
+<li>Especificar el modelo para múltiples grupos y múltiples puntos de tiempo simultáneamente.</li>
+</ul>
+</section>
+<section id="análisis-factorial-confirmatorio-cfa-inicial" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="análisis-factorial-confirmatorio-cfa-inicial"><span class="header-section-number">1.4</span> Análisis Factorial Confirmatorio (CFA) inicial:</h2>
+<ul>
+<li>Realizar un CFA para cada grupo y cada punto de tiempo por separado para evaluar el ajuste del modelo base.</li>
+<li>Evaluar los índices de ajuste: CFI, TLI, RMSEA, y SRMR.</li>
+</ul>
+</section>
+<section id="análisis-de-invarianza-multigrupo-longitudinal" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="análisis-de-invarianza-multigrupo-longitudinal"><span class="header-section-number">1.5</span> Análisis de invarianza multigrupo-longitudinal:</h2>
+<ul>
+<li>Seguir una secuencia de modelos anidados cada vez más restrictivos:</li>
+</ul>
+<ol type="a">
+<li>Invarianza configural:</li>
 </ol>
-<ul>
-<li>Realizar un CFA del PHQ-9 para la muestra completa.</li>
-<li>Evaluar el ajuste del modelo utilizando los índices CFI, RMSEA y SRMR.</li>
-</ul>
-<ol start="2" type="1">
-<li>Análisis Factorial Confirmatorio Multigrupo (MGCFA) - Comparación entre Grupos</li>
+<p>Estimar el modelo sin restricciones entre grupos y tiempos. Este modelo establece la línea base para comparaciones posteriores.</p>
+<ol start="2" type="a">
+<li>Invarianza métrica (débil):</li>
 </ol>
-<p>Realizaremos una serie de modelos anidados para evaluar diferentes niveles de invarianza: + M1: Invarianza Configural</p>
-<p>Misma estructura del modelo para ambos grupos (indígenas y no indígenas). + M2: Invarianza Métrica</p>
-<p>Cargas factoriales equivalentes entre grupos.</p>
-<ul>
-<li>M3: Invarianza Escalar</li>
-</ul>
-<p>Cargas factoriales e interceptos equivalentes entre grupos.</p>
-<ul>
-<li>M4: Invarianza Residual</li>
-</ul>
-<p>Cargas factoriales, interceptos y residuos equivalentes entre grupos.</p>
-<ul>
-<li>M5: M4 + Invarianza de Medias de Factores</li>
-<li>M6: M5 + Invarianza de Varianzas de Factores</li>
-</ul>
-<ol start="3" type="1">
-<li>MGCFA - Invarianza Longitudinal Aplicaremos el mismo proceso de MGCFA para evaluar la invarianza a lo largo del tiempo:</li>
+<p>Restringir las cargas factoriales para que sean iguales entre grupos y tiempos. Comparar con el modelo configural.</p>
+<ol start="3" type="a">
+<li>Invarianza escalar (fuerte):</li>
 </ol>
-<ul>
-<li>Comparar los modelos (M1 a M6) entre diferentes puntos de medición.</li>
-<li>Asegurar que el PHQ-9 mide el constructo de depresión de manera consistente en diferentes momentos.</li>
-</ul>
-<ol start="4" type="1">
-<li>Criterios de Evaluación</li>
+<p>Además de las cargas, restringir los interceptos para que sean iguales entre grupos y tiempos. Comparar con el modelo métrico.</p>
+<ol start="4" type="a">
+<li>Invarianza estricta:</li>
 </ol>
-<p>Para cada paso del MGCFA, evaluaremos el cambio en los estadísticos de ajuste del modelo:</p>
-<p>ΔCFI &lt; 0.01 ΔRMSEA &lt; 0.015 ΔSRMR &lt; 0.030</p>
-<p>Si estos criterios se cumplen, consideraremos que se ha logrado la invarianza en ese nivel.</p>
-<ol start="5" type="1">
-<li>Análisis de Sensibilidad</li>
-</ol>
+<p>Adicionalmente, restringir las varianzas residuales para que sean iguales. Comparar con el modelo escalar.</p>
+</section>
+<section id="evaluación-de-la-invarianza" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="evaluación-de-la-invarianza"><span class="header-section-number">1.6</span> Evaluación de la invarianza:</h2>
+<p>Utilizar cambios en los índices de ajuste para evaluar cada nivel de invarianza:</p>
 <ul>
-<li>Realizar un emparejamiento por puntaje de propensión entre participantes indígenas y no indígenas.</li>
-<li>Repetir los análisis MGCFA con la muestra emparejada para controlar posibles variables confusoras sociodemográficas.</li>
+<li>ΔCFI ≤ 0.01</li>
+<li>ΔRMSEA ≤ 0.015</li>
+<li>ΔSRMR ≤ 0.030</li>
 </ul>
-<p>Preparación datos</p>
+<p>Considerar el cambio en chi-cuadrado, pero no basarse únicamente en este debido a su sensibilidad al tamaño de la muestra.</p>
+</section>
+<section id="manejo-de-la-no-invarianza" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="manejo-de-la-no-invarianza"><span class="header-section-number">1.7</span> Manejo de la no invarianza:</h2>
+<ul>
+<li>Si se detecta no invarianza, identificar los ítems específicos que causan el problema.</li>
+<li>Considerar la liberación de restricciones para esos ítems (invarianza parcial).</li>
+</ul>
+</section>
+<section id="análisis-de-sensibilidad" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="análisis-de-sensibilidad"><span class="header-section-number">1.8</span> Análisis de sensibilidad:</h2>
+<ul>
+<li>Realizar análisis adicionales para evaluar la robustez de los resultados, como:
+<ul>
+<li>Usar diferentes estimadores (MLR, WLSMV)</li>
+<li>Probar modelos alternativos (por ejemplo, modelos de dos factores)</li>
+</ul></li>
+</ul>
+<p>Esta estrategia permite evaluar simultáneamente si el PHQ-9 funciona de manera equivalente tanto entre grupos (indígenas vs.&nbsp;no indígenas) como a lo largo del tiempo, proporcionando una comprensión más completa de la invarianza de medición del instrumento en este contexto específico.</p>
+<section id="preparación-datos" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="preparación-datos"><span class="header-section-number">1.8.1</span> Preparación datos</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\014</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div style="page-break-after: always;"></div>
@@ -344,29 +389,36 @@ Saunders, Rob, Delilah Moinian, Joshua Stott, Henry Delamain, Syed Ali Naqvi, Sa
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger (Mb) max used (Mb)
-Ncells  594335 31.8    1351974 72.3   692251 37.0
-Vcells 1100445  8.4    8388608 64.0  1923450 14.7</code></pre>
+Ncells  594599 31.8    1352728 72.3   692251 37.0
+Vcells 1105810  8.5    8388608 64.0  1923450 14.7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(influence.SEM)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)   </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjlabelled)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjmisc)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semTools)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(influence.SEM)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)   </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjlabelled)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjmisc)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="load-data" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="load-data"><span class="header-section-number">3.1</span> Load data</h3>
+</section>
+<section id="load-data" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="load-data"><span class="header-section-number">1.8.2</span> Load data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">"data/BBDD_ELRI_LONG.RData"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="seleccionar-datos" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="seleccionar-datos"><span class="header-section-number">3.2</span> seleccionar datos</h3>
+<section id="seleccionar-datos" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="seleccionar-datos"><span class="header-section-number">1.8.3</span> seleccionar datos</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>elri_inv <span class="ot">&lt;-</span> BBDD_ELRI_LONG <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">remove_all_labels</span>() <span class="sc">%&gt;%</span> </span>
@@ -387,72 +439,121 @@ Vcells 1100445  8.4    8388608 64.0  1923450 14.7</code></pre>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">indi =</span> <span class="fu">case_when</span>(a1 <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span> <span class="sc">~</span> <span class="st">"indi"</span>,</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                          a1 <span class="sc">==</span> <span class="dv">12</span> <span class="sc">~</span> <span class="st">"no_indi"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(indi)) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(folio, ano, indi, g5_1, g5_2, g5_3, g5_4, g5_5, g5_6, g5_7, g5_8, g5_9) </span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(BBDD_ELRI_LONG)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(elri_inv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 11,584
-Columns: 12
-$ folio &lt;dbl&gt; 110100101, 110100103, 110100104, 110100106, 110100107, 110100108…
-$ ano   &lt;dbl&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016…
-$ indi  &lt;chr&gt; "indi", "indi", "indi", "no_indi", "no_indi", "no_indi", "indi",…
-$ g5_1  &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 2, 1, 3, 1, 1, 2, 1, 2, 2, 2, 2, 2, 1, 1, 1…
-$ g5_2  &lt;dbl&gt; 1, 1, 3, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2…
-$ g5_3  &lt;dbl&gt; 1, 1, 2, 1, 1, 3, 1, 2, 1, 4, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2…
-$ g5_4  &lt;dbl&gt; 1, 1, 3, 2, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1…
-$ g5_5  &lt;dbl&gt; 1, 1, 1, 2, 1, 1, 2, 1, 1, 4, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1…
-$ g5_6  &lt;dbl&gt; 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1…
-$ g5_7  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-$ g5_8  &lt;dbl&gt; 1, 1, 3, 2, 1, 1, 2, 2, 1, NA, 2, 3, 3, 3, 1, 2, 2, 2, 2, 1, 1, …
-$ g5_9  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1…</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>elri_inv <span class="sc">%&gt;%</span> <span class="fu">frq</span>(ano)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>ano &lt;numeric&gt; 
-# total N=11584 valid N=11584 mean=2019.12 sd=2.68
-
-Value |    N | Raw % | Valid % | Cum. %
----------------------------------------
- 2016 | 3588 | 30.97 |   30.97 |  30.97
- 2018 | 2828 | 24.41 |   24.41 |  55.39
- 2021 | 2868 | 24.76 |   24.76 |  80.15
- 2023 | 2300 | 19.85 |   19.85 | 100.00
- &lt;NA&gt; |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>elri_inv <span class="sc">%&gt;%</span> <span class="fu">frq</span>(indi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>indi &lt;character&gt; 
-# total N=11584 valid N=11584 mean=1.44 sd=0.50
-
-Value   |    N | Raw % | Valid % | Cum. %
------------------------------------------
-indi    | 6462 | 55.78 |   55.78 |  55.78
-no_indi | 5122 | 44.22 |   44.22 | 100.00
-&lt;NA&gt;    |    0 |  0.00 |    &lt;NA&gt; |   &lt;NA&gt;</code></pre>
-</div>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(folio, ano, indi, g5_1, g5_2, g5_3, g5_4, g5_5, g5_6, g5_7, g5_8, g5_9) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="separar-datos-por-año" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="separar-datos-por-año"><span class="header-section-number">3.3</span> Separar datos por año</h3>
+<section id="asegurar-que-indi-y-ano-sean-factores" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="asegurar-que-indi-y-ano-sean-factores"><span class="header-section-number">1.8.4</span> Asegurar que ‘indi’ y ‘ano’ sean factores</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_2016 <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ano <span class="sc">==</span> <span class="dv">2016</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data_2018 <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ano <span class="sc">==</span> <span class="dv">2018</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data_2021 <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ano <span class="sc">==</span> <span class="dv">2021</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>data_2023 <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ano <span class="sc">==</span> <span class="dv">2023</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elri_inv<span class="sc">$</span>indi <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(elri_inv<span class="sc">$</span>indi)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>elri_inv<span class="sc">$</span>ano <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(elri_inv<span class="sc">$</span>ano)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="separar-datos-por-grupo-indino_indi" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="separar-datos-por-grupo-indino_indi"><span class="header-section-number">3.4</span> Separar datos por grupo indi/no_indi</h3>
+</section>
+<section id="análisis-descriptivo-1" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="análisis-descriptivo-1"><span class="header-section-number">1.9</span> Análisis descriptivo</h2>
+<section id="estadísticas-descriptivas-por-grupo-y-año" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="estadísticas-descriptivas-por-grupo-y-año"><span class="header-section-number">1.9.1</span> Estadísticas descriptivas por grupo y año</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_indi <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(indi <span class="sc">==</span> <span class="st">"indi"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data_no_indi <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(indi <span class="sc">==</span> <span class="st">"no_indi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>descr_stats <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(indi, ano) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(g5_1<span class="sc">:</span>g5_9, <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar los datos para el gráfico</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>descr_stats_long <span class="ot">&lt;-</span> descr_stats <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(indi, ano), </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"item"</span>, <span class="st">".value"</span>), </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_pattern =</span> <span class="st">"g5_(</span><span class="sc">\\</span><span class="st">d+)_(.*)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># medias</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(descr_stats_long, <span class="fu">aes</span>(<span class="at">x =</span> item, <span class="at">y =</span> mean, <span class="at">fill =</span> indi)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> ano) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Medias de los ítems del PHQ-9 por grupo y año"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Ítem"</span>, <span class="at">y =</span> <span class="st">"Media"</span>, <span class="at">fill =</span> <span class="st">"Grupo"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># desviaciones estándar</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(descr_stats_long, <span class="fu">aes</span>(<span class="at">x =</span> item, <span class="at">y =</span> sd, <span class="at">fill =</span> indi)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> ano) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Desviaciones estándar de los ítems del PHQ-9 por grupo y año"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Ítem"</span>, <span class="at">y =</span> <span class="st">"Desviación estándar"</span>, <span class="at">fill =</span> <span class="st">"Grupo"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 </section>
 </section>
-<section id="definir-modelos-de-medición" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="definir-modelos-de-medición"><span class="header-section-number">4</span> Definir modelos de medición</h2>
+<section id="matrices-de-correlación-por-grupo-y-año" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="matrices-de-correlación-por-grupo-y-año"><span class="header-section-number">1.10</span> Matrices de correlación por grupo y año</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>corr_matrices <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(indi, ano) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do</span>(<span class="at">corr =</span> <span class="fu">cor</span>(.[,<span class="dv">4</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para crear un gráfico de correlación usando ggplot2</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plot_correlation <span class="ot">&lt;-</span> <span class="cf">function</span>(cor_matrix, title) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  cor_melted <span class="ot">&lt;-</span> <span class="fu">melt</span>(cor_matrix)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(cor_melted, <span class="fu">aes</span>(<span class="at">x =</span> Var1, <span class="at">y =</span> Var2, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">"blue"</span>, <span class="at">high =</span> <span class="st">"red"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">midpoint =</span> <span class="dv">0</span>, <span class="at">limit =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="at">space =</span> <span class="st">"Lab"</span>, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">name=</span><span class="st">"Correlación"</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(value, <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear y mostrar los gráficos de correlación para cada grupo y año</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>corr_plots <span class="ot">&lt;-</span> corr_matrices <span class="sc">%&gt;%</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">plot =</span> <span class="fu">list</span>(<span class="fu">plot_correlation</span>(corr, <span class="fu">paste</span>(indi, ano))))</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar los gráficos</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(corr_plots)) {</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(corr_plots<span class="sc">$</span>plot[[i]])</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-10-8.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="especificación-del-modelo-de-medición-1" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="especificación-del-modelo-de-medición-1"><span class="header-section-number">1.11</span> Especificación del modelo de medición</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model_1f <span class="ot">&lt;-</span> <span class="st">'</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">  depression =~ g5_1 + g5_2 + g5_3 + g5_4 + g5_5 + g5_6 + g5_7 + g5_8 + g5_9</span></span>
@@ -464,119 +565,219 @@ no_indi | 5122 | 44.22 |   44.22 | 100.00
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="invarianza-longitudinal" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="invarianza-longitudinal"><span class="header-section-number">5</span> Invarianza longitudinal</h2>
+<section id="análisis-factorial-confirmatorio-cfa-inicial-1" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="análisis-factorial-confirmatorio-cfa-inicial-1"><span class="header-section-number">1.12</span> Análisis Factorial Confirmatorio (CFA) inicial</h2>
+<section id="cfa-para-cada-combinación-de-grupo-y-año" class="level3" data-number="1.12.1">
+<h3 data-number="1.12.1" class="anchored" data-anchor-id="cfa-para-cada-combinación-de-grupo-y-año"><span class="header-section-number">1.12.1</span> CFA para cada combinación de grupo y año</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo de un factor</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fit_1f_configural_year <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> elri_inv,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"ano"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>fit_1f_metric_year <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> elri_inv,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"ano"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>fit_1f_scalar_year <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> elri_inv,</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"ano"</span>,</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="comparar-modelos-anidados" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="comparar-modelos-anidados"><span class="header-section-number">5.1</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_1f_configural_year, fit_1f_metric_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                        Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
-fit_1f_configural_year 108         1110.0                                  
-fit_1f_metric_year     132         1316.2     124.45      24  1.555e-15 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_1f_metric_year, fit_1f_scalar_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                    Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
-fit_1f_metric_year 132         1316.2                                  
-fit_1f_scalar_year 183         1542.3     473.87      51  &lt; 2.2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
-</section>
-<section id="modelo-de-dos-factores" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="modelo-de-dos-factores"><span class="header-section-number">5.2</span> Modelo de dos factores</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit_2f_configural_year <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> elri_inv,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"ano"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cfa_results <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">indi =</span> <span class="fu">levels</span>(elri_inv<span class="sc">$</span>indi), <span class="at">ano =</span> <span class="fu">levels</span>(elri_inv<span class="sc">$</span>ano)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit_1f =</span> <span class="fu">map2</span>(indi, ano, <span class="sc">~</span><span class="fu">cfa</span>(model_1f, <span class="at">data =</span> <span class="fu">filter</span>(elri_inv, indi <span class="sc">==</span> .x, ano <span class="sc">==</span> .y), </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit_2f =</span> <span class="fu">map2</span>(indi, ano, <span class="sc">~</span><span class="fu">cfa</span>(model_2f, <span class="at">data =</span> <span class="fu">filter</span>(elri_inv, indi <span class="sc">==</span> .x, ano <span class="sc">==</span> .y), </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit_2f_metric_year <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> elri_inv,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"ano"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
+<pre><code>Warning: There were 4 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `fit_2f = map2(...)`.
+Caused by warning in `lav_object_post_check()`:
+! lavaan WARNING: covariance matrix of latent variables
+                is not positive definite;
                 use lavInspect(fit, "cov.lv") to investigate.
-Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 3 remaining warnings.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fit_2f_scalar_year <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> elri_inv,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"ano"</span>,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer índices de ajuste</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cfa_fit_indices <span class="ot">&lt;-</span> cfa_results <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit_1f_indices =</span> <span class="fu">map</span>(fit_1f, <span class="sc">~</span><span class="fu">fitMeasures</span>(., <span class="fu">c</span>(<span class="st">"cfi"</span>, <span class="st">"tli"</span>, <span class="st">"rmsea"</span>, <span class="st">"srmr"</span>))),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit_2f_indices =</span> <span class="fu">map</span>(fit_2f, <span class="sc">~</span><span class="fu">fitMeasures</span>(., <span class="fu">c</span>(<span class="st">"cfi"</span>, <span class="st">"tli"</span>, <span class="st">"rmsea"</span>, <span class="st">"srmr"</span>)))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(<span class="fu">c</span>(fit_1f_indices, fit_2f_indices), <span class="at">names_sep =</span> <span class="st">"_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
+<pre><code>Warning: There were 8 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `fit_2f_indices = map(fit_2f, ~fitMeasures(., c("cfi", "tli",
+  "rmsea", "srmr")))`.
+Caused by warning in `lav_object_post_check()`:
+! lavaan WARNING: covariance matrix of latent variables
+                is not positive definite;
                 use lavInspect(fit, "cov.lv") to investigate.
-Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 7 remaining warnings.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar datos para gráficos</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> cfa_fit_indices <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"cfi"</span>), <span class="fu">contains</span>(<span class="st">"tli"</span>), <span class="fu">contains</span>(<span class="st">"rmsea"</span>), <span class="fu">contains</span>(<span class="st">"srmr"</span>)),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"model"</span>, <span class="st">"index"</span>),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"fit_(.f)_indices_(.*)"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para crear gráficos</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>plot_fit_index <span class="ot">&lt;-</span> <span class="cf">function</span>(data, index, title) {</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(index <span class="sc">==</span> <span class="sc">!!</span>index), </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x =</span> ano, <span class="at">y =</span> value, <span class="at">color =</span> indi, <span class="at">group =</span> indi)) <span class="sc">+</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> model, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"1f"</span> <span class="ot">=</span> <span class="st">"1 Factor"</span>, <span class="st">"2f"</span> <span class="ot">=</span> <span class="st">"2 Factores"</span>))) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">x =</span> <span class="st">"Año"</span>, <span class="at">y =</span> index, <span class="at">color =</span> <span class="st">"Grupo"</span>) <span class="sc">+</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráficos</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>p_cfi <span class="ot">&lt;-</span> <span class="fu">plot_fit_index</span>(plot_data, <span class="st">"cfi"</span>, <span class="st">"CFI a lo largo del tiempo"</span>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>p_tli <span class="ot">&lt;-</span> <span class="fu">plot_fit_index</span>(plot_data, <span class="st">"tli"</span>, <span class="st">"TLI a lo largo del tiempo"</span>)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>p_rmsea <span class="ot">&lt;-</span> <span class="fu">plot_fit_index</span>(plot_data, <span class="st">"rmsea"</span>, <span class="st">"RMSEA a lo largo del tiempo"</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>p_srmr <span class="ot">&lt;-</span> <span class="fu">plot_fit_index</span>(plot_data, <span class="st">"srmr"</span>, <span class="st">"SRMR a lo largo del tiempo"</span>)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar gráficos</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> (p_cfi <span class="sc">+</span> p_tli) <span class="sc">/</span> (p_rmsea <span class="sc">+</span> p_srmr)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimir tabla de resumen</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> cfa_fit_indices <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(indi, ano, <span class="fu">contains</span>(<span class="st">"cfi"</span>), <span class="fu">contains</span>(<span class="st">"tli"</span>), <span class="fu">contains</span>(<span class="st">"rmsea"</span>), <span class="fu">contains</span>(<span class="st">"srmr"</span>))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 10
+  indi    ano   fit_1f_indices_cfi fit_2f_indices_cfi fit_1f_indices_tli
+  &lt;fct&gt;   &lt;fct&gt; &lt;lvn.vctr&gt;         &lt;lvn.vctr&gt;         &lt;lvn.vctr&gt;        
+1 indi    2016  0.9976527          0.9977283          0.9968702         
+2 no_indi 2016  0.9985749          0.9985891          0.9980999         
+3 indi    2018  0.9964500          0.9966035          0.9952667         
+4 no_indi 2018  0.9961995          0.9964462          0.9949327         
+5 indi    2021  0.9961210          0.9962043          0.9948280         
+6 no_indi 2021  0.9948420          0.9948967          0.9931227         
+7 indi    2023  0.9971509          0.9972093          0.9962012         
+8 no_indi 2023  0.9978116          0.9977931          0.9970821         
+# ℹ 5 more variables: fit_2f_indices_tli &lt;lvn.vctr&gt;,
+#   fit_1f_indices_rmsea &lt;lvn.vctr&gt;, fit_2f_indices_rmsea &lt;lvn.vctr&gt;,
+#   fit_1f_indices_srmr &lt;lvn.vctr&gt;, fit_2f_indices_srmr &lt;lvn.vctr&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="comparar-modelos-anidados-1" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="comparar-modelos-anidados-1"><span class="header-section-number">5.3</span> Comparar modelos anidados</h3>
+<section id="cfi-índice-de-ajuste-comparativo" class="level3" data-number="1.12.2">
+<h3 data-number="1.12.2" class="anchored" data-anchor-id="cfi-índice-de-ajuste-comparativo"><span class="header-section-number">1.12.2</span> CFI (Índice de Ajuste Comparativo)</h3>
+<ul>
+<li>Rango ideal: &gt; 0.95 (mejor cuanto más cerca de 1)</li>
+</ul>
+<p>Ambos modelos (1f y 2f) muestran excelentes valores de CFI (todos &gt; 0.99) para ambos grupos en todos los años. Las diferencias entre los modelos de 1 y 2 factores son mínimas. El grupo no indígena tiende a tener valores CFI ligeramente más altos, excepto en 2021.</p>
+</section>
+<section id="tli-índice-de-tucker-lewis" class="level3" data-number="1.12.3">
+<h3 data-number="1.12.3" class="anchored" data-anchor-id="tli-índice-de-tucker-lewis"><span class="header-section-number">1.12.3</span> TLI (Índice de Tucker-Lewis):</h3>
+<ul>
+<li>Rango ideal: &gt; 0.95 (mejor cuanto más cerca de 1)</li>
+</ul>
+<p>Al igual que con CFI, ambos modelos muestran excelentes valores de TLI (todos &gt; 0.99). Las diferencias entre los modelos de 1 y 2 factores son muy pequeñas. El patrón es similar al CFI, con el grupo no indígena teniendo valores ligeramente más altos, excepto en 2021.</p>
+</section>
+<section id="rmsea-error-cuadrático-medio-de-aproximación" class="level3" data-number="1.12.4">
+<h3 data-number="1.12.4" class="anchored" data-anchor-id="rmsea-error-cuadrático-medio-de-aproximación"><span class="header-section-number">1.12.4</span> RMSEA (Error Cuadrático Medio de Aproximación):</h3>
+<ul>
+<li>Rango ideal: &lt; 0.06 (menor es mejor)</li>
+</ul>
+<p>Los valores varían entre 0.039 y 0.076, indicando un ajuste de bueno a aceptable. El ajuste parece ser mejor en 2016 para ambos grupos, empeorando ligeramente en los años siguientes. El grupo no indígena tiende a tener valores RMSEA ligeramente más altos en 2021 y 2023.</p>
+</section>
+<section id="srmr-raíz-cuadrada-media-residual-estandarizada" class="level3" data-number="1.12.5">
+<h3 data-number="1.12.5" class="anchored" data-anchor-id="srmr-raíz-cuadrada-media-residual-estandarizada"><span class="header-section-number">1.12.5</span> SRMR (Raíz Cuadrada Media Residual Estandarizada):</h3>
+<ul>
+<li>Rango ideal: &lt; 0.08 (menor es mejor)</li>
+</ul>
+<p>Todos los valores están por debajo de 0.08, indicando un buen ajuste. El ajuste parece ser mejor en 2016 para ambos grupos, con valores más altos en los años siguientes. El grupo no indígena tiende a tener valores SRMR ligeramente más altos en 2021.</p>
+</section>
+<section id="en-general" class="level3" data-number="1.12.6">
+<h3 data-number="1.12.6" class="anchored" data-anchor-id="en-general"><span class="header-section-number">1.12.6</span> En general:</h3>
+<ul>
+<li><p>Ambos modelos (1 factor y 2 factores) muestran un ajuste excelente según CFI y TLI, y un ajuste bueno a aceptable según RMSEA y SRMR.</p></li>
+<li><p>Las diferencias entre los modelos de 1 y 2 factores son mínimas, lo que sugiere que el modelo más simple de 1 factor podría ser preferible por parsimonia.</p></li>
+<li><p>El ajuste tiende a ser mejor en 2016 para ambos grupos, con un ligero empeoramiento en los años siguientes, especialmente en 2021.</p></li>
+<li><p>Hay algunas diferencias menores entre los grupos indígena y no indígena, pero en general, los patrones son similares.</p></li>
+<li><p>El año 2021 muestra el ajuste menos favorable para ambos grupos, lo cual podría estar relacionado con factores externos (como la pandemia de COVID-19).</p></li>
+</ul>
+</section>
+</section>
+<section id="análisis-de-invarianza-multigrupo-longitudinal-1" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="análisis-de-invarianza-multigrupo-longitudinal-1"><span class="header-section-number">1.13</span> Análisis de invarianza multigrupo-longitudinal</h2>
+<section id="modelo-de-un-factor" class="level3" data-number="1.13.1">
+<h3 data-number="1.13.1" class="anchored" data-anchor-id="modelo-de-un-factor"><span class="header-section-number">1.13.1</span> Modelo de un factor</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2f_configural_year, fit_2f_metric_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo de un factor</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>model_1f <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  depression =~ g5_1 + g5_2 + g5_3 + g5_4 + g5_5 + g5_6 + g5_7 + g5_8 + g5_9</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="función-para-realizar-análisis-de-invarianza-entre-grupos-para-un-año-específico" class="level3" data-number="1.13.2">
+<h3 data-number="1.13.2" class="anchored" data-anchor-id="función-para-realizar-análisis-de-invarianza-entre-grupos-para-un-año-específico"><span class="header-section-number">1.13.2</span> Función para realizar análisis de invarianza entre grupos para un año específico</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>invariance_by_year <span class="ot">&lt;-</span> <span class="cf">function</span>(data, year) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  data_year <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ano <span class="sc">==</span> year)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_year, <span class="at">group =</span> <span class="st">"indi"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_year, <span class="at">group =</span> <span class="st">"indi"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_year, <span class="at">group =</span> <span class="st">"indi"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">configural =</span> configural, <span class="at">metric =</span> metric, <span class="at">scalar =</span> scalar)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="realizar-análisis-de-invarianza-para-cada-año" class="level3" data-number="1.13.3">
+<h3 data-number="1.13.3" class="anchored" data-anchor-id="realizar-análisis-de-invarianza-para-cada-año"><span class="header-section-number">1.13.3</span> Realizar análisis de invarianza para cada año</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>inv_2016 <span class="ot">&lt;-</span> <span class="fu">invariance_by_year</span>(elri_inv, <span class="st">"2016"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>inv_2018 <span class="ot">&lt;-</span> <span class="fu">invariance_by_year</span>(elri_inv, <span class="st">"2018"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>inv_2021 <span class="ot">&lt;-</span> <span class="fu">invariance_by_year</span>(elri_inv, <span class="st">"2021"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>inv_2023 <span class="ot">&lt;-</span> <span class="fu">invariance_by_year</span>(elri_inv, <span class="st">"2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="función-para-realizar-análisis-de-invarianza-longitudinal-para-un-grupo-específico" class="level3" data-number="1.13.4">
+<h3 data-number="1.13.4" class="anchored" data-anchor-id="función-para-realizar-análisis-de-invarianza-longitudinal-para-un-grupo-específico"><span class="header-section-number">1.13.4</span> Función para realizar análisis de invarianza longitudinal para un grupo específico</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>invariance_by_group <span class="ot">&lt;-</span> <span class="cf">function</span>(data, group) {</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  data_group <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(indi <span class="sc">==</span> group)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>))</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">configural =</span> configural, <span class="at">metric =</span> metric, <span class="at">scalar =</span> scalar)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="realizar-análisis-de-invarianza-longitudinal-para-cada-grupo" class="level3" data-number="1.13.5">
+<h3 data-number="1.13.5" class="anchored" data-anchor-id="realizar-análisis-de-invarianza-longitudinal-para-cada-grupo"><span class="header-section-number">1.13.5</span> Realizar análisis de invarianza longitudinal para cada grupo</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>inv_indi <span class="ot">&lt;-</span> <span class="fu">invariance_by_group</span>(elri_inv, <span class="st">"indi"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>inv_no_indi <span class="ot">&lt;-</span> <span class="fu">invariance_by_group</span>(elri_inv, <span class="st">"no_indi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="comparar-modelos-anidados-para-cada-análisis" class="level3" data-number="1.13.6">
+<h3 data-number="1.13.6" class="anchored" data-anchor-id="comparar-modelos-anidados-para-cada-análisis"><span class="header-section-number">1.13.6</span> Comparar modelos anidados para cada análisis</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>compare_models <span class="ot">&lt;-</span> <span class="cf">function</span>(models) {</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anova</span>(models<span class="sc">$</span>configural, models<span class="sc">$</span>metric, models<span class="sc">$</span>scalar)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="comparaciones-para-invarianza-entre-grupos-por-año" class="level3" data-number="1.13.7">
+<h3 data-number="1.13.7" class="anchored" data-anchor-id="comparaciones-para-invarianza-entre-grupos-por-año"><span class="header-section-number">1.13.7</span> Comparaciones para invarianza entre grupos por año</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza entre grupos - 2016"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invarianza entre grupos - 2016"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_2016))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Scaled Chi-Squared Difference Test (method = "satorra.2000")
@@ -586,13 +787,19 @@ lavaan NOTE:
     robust test that should be reported per model. A robust difference
     test is a function of two standard (not robust) statistics.
  
-                        Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
-fit_2f_configural_year 104         1076.5                                  
-fit_2f_metric_year     125         1269.6     114.07      21  8.647e-15 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+                  Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
+models$configural 54         229.68                              
+models$metric     62         239.06     6.3346       8     0.6098
+models$scalar     79         241.01     5.4052      17     0.9964</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2f_metric_year, fit_2f_scalar_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Estos resultados sugieren que hay invarianza de medición entre los grupos indígenas y no indígenas en 2016. Esto implica que el PHQ-9 está midiendo el constructo de depresión de manera similar en ambos grupos para este año.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza entre grupos - 2018"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invarianza entre grupos - 2018"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_2018))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Scaled Chi-Squared Difference Test (method = "satorra.2000")
@@ -602,346 +809,19 @@ lavaan NOTE:
     robust test that should be reported per model. A robust difference
     test is a function of two standard (not robust) statistics.
  
-                    Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
-fit_2f_metric_year 125         1269.6                                  
-fit_2f_scalar_year 173         1489.8     462.56      48  &lt; 2.2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+                  Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
+models$configural 54         352.72                              
+models$metric     62         366.80     8.6571       8     0.3720
+models$scalar     79         372.56    14.2857      17     0.6468</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="invarianza-intergrupal-indi-vs-no_indi-para-cada-año" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="invarianza-intergrupal-indi-vs-no_indi-para-cada-año"><span class="header-section-number">6</span> Invarianza intergrupal (indi vs no_indi) para cada año</h2>
-<section id="section" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="section"><span class="header-section-number">6.1</span> 2016</h3>
-</section>
-<section id="modelo-de-un-factor" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="modelo-de-un-factor"><span class="header-section-number">6.2</span> Modelo de un factor</h3>
+<p>Estos resultados sugieren que hay invarianza de medición entre los grupos indígenas y no indígenas en 2018. Esto implica que el PHQ-9 está midiendo el constructo de depresión de manera similar en ambos grupos para este año, al igual que se observó en 2016.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fit_2016_1f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2016,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>fit_2016_1f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2016,</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>fit_2016_1f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2016,</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="comparar-modelos-anidados-2" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="comparar-modelos-anidados-2"><span class="header-section-number">6.3</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2016_1f_configural, fit_2016_1f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza entre grupos - 2021"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2016_1f_configural 54         229.68                              
-fit_2016_1f_metric     62         239.06     6.3346       8     0.6098</code></pre>
+<pre><code>[1] "Invarianza entre grupos - 2021"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2016_1f_metric, fit_2016_1f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2016_1f_metric 62         239.06                              
-fit_2016_1f_scalar 79         241.01     5.4052      17     0.9964</code></pre>
-</div>
-</div>
-</section>
-<section id="modelo-de-dos-factores-1" class="level3" data-number="6.4">
-<h3 data-number="6.4" class="anchored" data-anchor-id="modelo-de-dos-factores-1"><span class="header-section-number">6.4</span> Modelo de dos factores</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fit_2016_2f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2016,</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fit_2016_2f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2016,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
-                use lavInspect(fit, "cov.lv") to investigate.
-Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>fit_2016_2f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2016,</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
-                use lavInspect(fit, "cov.lv") to investigate.
-Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-</div>
-</section>
-<section id="comparar-modelos-anidados-3" class="level3" data-number="6.5">
-<h3 data-number="6.5" class="anchored" data-anchor-id="comparar-modelos-anidados-3"><span class="header-section-number">6.5</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2016_2f_configural, fit_2016_2f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2016_2f_configural 52         223.59                              
-fit_2016_2f_metric     59         232.50     5.9424       7     0.5465</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2016_2f_metric, fit_2016_2f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2016_2f_metric 59         232.50                              
-fit_2016_2f_scalar 75         234.53     5.5041      16     0.9926</code></pre>
-</div>
-</div>
-</section>
-<section id="section-1" class="level3" data-number="6.6">
-<h3 data-number="6.6" class="anchored" data-anchor-id="section-1"><span class="header-section-number">6.6</span> 2018</h3>
-</section>
-<section id="modelo-de-un-factor-1" class="level3" data-number="6.7">
-<h3 data-number="6.7" class="anchored" data-anchor-id="modelo-de-un-factor-1"><span class="header-section-number">6.7</span> Modelo de un factor</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>fit_2018_1f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2018,</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>fit_2018_1f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2018,</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>fit_2018_1f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2018,</span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="comparar-modelos-anidados-4" class="level3" data-number="6.8">
-<h3 data-number="6.8" class="anchored" data-anchor-id="comparar-modelos-anidados-4"><span class="header-section-number">6.8</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2018_1f_configural, fit_2018_1f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2018_1f_configural 54         352.72                              
-fit_2018_1f_metric     62         366.80     8.6571       8      0.372</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2018_1f_metric, fit_2018_1f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2018_1f_metric 62         366.80                              
-fit_2018_1f_scalar 79         372.56     14.286      17     0.6468</code></pre>
-</div>
-</div>
-</section>
-<section id="modelo-de-dos-factores-2" class="level3" data-number="6.9">
-<h3 data-number="6.9" class="anchored" data-anchor-id="modelo-de-dos-factores-2"><span class="header-section-number">6.9</span> Modelo de dos factores</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>fit_2018_2f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2018,</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fit_2018_2f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2018,</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
-                use lavInspect(fit, "cov.lv") to investigate.
-Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fit_2018_2f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2018,</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 1;
-                use lavInspect(fit, "cov.lv") to investigate.
-Warning in lav_object_post_check(object): lavaan WARNING: covariance matrix of latent variables
-                is not positive definite in group 2;
-                use lavInspect(fit, "cov.lv") to investigate.</code></pre>
-</div>
-</div>
-</section>
-<section id="comparar-modelos-anidados-5" class="level3" data-number="6.10">
-<h3 data-number="6.10" class="anchored" data-anchor-id="comparar-modelos-anidados-5"><span class="header-section-number">6.10</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2018_2f_configural, fit_2018_2f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2018_2f_configural 52         335.09                              
-fit_2018_2f_metric     59         346.52     6.8928       7     0.4401</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2018_2f_metric, fit_2018_2f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2018_2f_metric 59         346.52                              
-fit_2018_2f_scalar 75         354.67     19.293      16     0.2538</code></pre>
-</div>
-</div>
-</section>
-<section id="section-2" class="level3" data-number="6.11">
-<h3 data-number="6.11" class="anchored" data-anchor-id="section-2"><span class="header-section-number">6.11</span> 2021</h3>
-</section>
-<section id="modelo-de-un-factor-2" class="level3" data-number="6.12">
-<h3 data-number="6.12" class="anchored" data-anchor-id="modelo-de-un-factor-2"><span class="header-section-number">6.12</span> Modelo de un factor</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>fit_2021_1f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2021,</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>fit_2021_1f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2021,</span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>fit_2021_1f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2021,</span>
-<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="comparar-modelos-anidados-6" class="level3" data-number="6.13">
-<h3 data-number="6.13" class="anchored" data-anchor-id="comparar-modelos-anidados-6"><span class="header-section-number">6.13</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2021_1f_configural, fit_2021_1f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)   
-fit_2021_1f_configural 54         366.19                                 
-fit_2021_1f_metric     62         405.89     22.532       8    0.00402 **
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2021_1f_metric, fit_2021_1f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_2021))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in lavTestLRT(object = object, ..., model.names = NAMES): lavaan WARNING:
     Some restricted models fit better than less restricted models;
@@ -958,102 +838,126 @@ lavaan NOTE:
     robust test that should be reported per model. A robust difference
     test is a function of two standard (not robust) statistics.
  
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2021_1f_metric 62         405.89                              
-fit_2021_1f_scalar 79         405.36    0.72466      17          1</code></pre>
-</div>
-</div>
-</section>
-<section id="modelo-de-dos-factores-3" class="level3" data-number="6.14">
-<h3 data-number="6.14" class="anchored" data-anchor-id="modelo-de-dos-factores-3"><span class="header-section-number">6.14</span> Modelo de dos factores</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>fit_2021_2f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2021,</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>fit_2021_2f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2021,</span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>fit_2021_2f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2021,</span>
-<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="comparar-modelos-anidados-7" class="level3" data-number="6.15">
-<h3 data-number="6.15" class="anchored" data-anchor-id="comparar-modelos-anidados-7"><span class="header-section-number">6.15</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2021_2f_configural, fit_2021_2f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)  
-fit_2021_2f_configural 52         358.99                                
-fit_2021_2f_metric     59         390.49     17.563       7    0.01411 *
+                  Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)   
+models$configural 54         366.19                                 
+models$metric     62         405.89    22.5320       8    0.00402 **
+models$scalar     79         405.36     0.7247      17    1.00000   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2021_2f_metric, fit_2021_2f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2021_2f_metric 59         390.49                              
-fit_2021_2f_scalar 75         397.34     15.481      16     0.4897</code></pre>
 </div>
-</div>
-</section>
-<section id="section-3" class="level3" data-number="6.16">
-<h3 data-number="6.16" class="anchored" data-anchor-id="section-3"><span class="header-section-number">6.16</span> 2023</h3>
-</section>
-<section id="modelo-de-un-factor-3" class="level3" data-number="6.17">
-<h3 data-number="6.17" class="anchored" data-anchor-id="modelo-de-un-factor-3"><span class="header-section-number">6.17</span> Modelo de un factor</h3>
+<ul>
+<li>Advertencias y consideraciones especiales:</li>
+</ul>
+<p>Hay una advertencia sobre modelos más restringidos que se ajustan mejor que los menos restringidos, lo cual es inusual y podría indicar problemas en la estimación del modelo. El resultado para la invarianza escalar es sospechoso, con un valor p de 1.00000, lo que es extremadamente raro y podría indicar problemas en la convergencia del modelo.</p>
+<p>Estos resultados sugieren que en 2021 no hay invarianza métrica entre los grupos indígenas y no indígenas, lo que implica que las cargas factoriales podrían ser diferentes entre los grupos. El resultado de la invarianza escalar es cuestionable debido a la advertencia y el valor p inusual.</p>
+<p>En comparación con años anteriores los resultados de 2021 son notablemente diferentes de los de 2016 y 2018, sugiriendo un cambio en cómo el PHQ-9 funciona entre los grupos en este año.</p>
+<ul>
+<li>Recomendaciones:</li>
+</ul>
+<p>Investigar más a fondo los modelos para 2021, especialmente el modelo escalar. Considerar la posibilidad de invarianza parcial, donde solo algunas cargas factoriales se mantienen iguales entre los grupos. Examinar los índices de modificación para identificar fuentes específicas de no invarianza. Tener en cuenta factores contextuales (como la pandemia de COVID-19) que podrían haber afectado las respuestas al PHQ-9 de manera diferente entre los grupos en 2021.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>fit_2023_1f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2023,</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>fit_2023_1f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2023,</span>
-<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a>fit_2023_1f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f,</span>
-<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2023,</span>
-<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb74-18"><a href="#cb74-18" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb74-19"><a href="#cb74-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza entre grupos - 2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invarianza entre grupos - 2023"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_2023))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Scaled Chi-Squared Difference Test (method = "satorra.2000")
+
+lavaan NOTE:
+    The "Chisq" column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                  Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
+models$configural 54         236.00                              
+models$metric     62         247.25     7.5928       8     0.4742
+models$scalar     79         248.56     4.9808      17     0.9978</code></pre>
+</div>
+</div>
+<p>Estos resultados sugieren que hay invarianza de medición entre los grupos indígenas y no indígenas en 2023. Esto implica que el PHQ-9 está midiendo el constructo de depresión de manera similar en ambos grupos para este año.</p>
+<p>Los resultados de 2023 son similares a los de 2016 y 2018, mostrando invarianza tanto métrica como escalar.</p>
+<p>El valor de chi-cuadrado base (236.00) es menor que en 2021 (366.19) y similar al de 2016 (229.68), lo que podría indicar un mejor ajuste general del modelo en 2023 comparado con 2021. Los valores p para las pruebas de diferencia son muy altos, especialmente para la invarianza escalar (0.9978), lo que indica un fuerte apoyo a la invarianza entre grupos.</p>
+</section>
+<section id="comparaciones-para-invarianza-longitudinal-por-grupo" class="level3" data-number="1.13.8">
+<h3 data-number="1.13.8" class="anchored" data-anchor-id="comparaciones-para-invarianza-longitudinal-por-grupo"><span class="header-section-number">1.13.8</span> Comparaciones para invarianza longitudinal por grupo</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza longitudinal - Indígena"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invarianza longitudinal - Indígena"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_indi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Scaled Chi-Squared Difference Test (method = "satorra.2000")
+
+lavaan NOTE:
+    The "Chisq" column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+models$configural 108         658.90                                  
+models$metric     132         768.60      67.36      24  5.443e-06 ***
+models$scalar     183         927.71     335.67      51  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza longitudinal - No Indígena"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invarianza longitudinal - No Indígena"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_no_indi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Scaled Chi-Squared Difference Test (method = "satorra.2000")
+
+lavaan NOTE:
+    The "Chisq" column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+models$configural 108         525.69                                  
+models$metric     132         666.93     84.765      24  1.041e-08 ***
+models$scalar     183         742.98    161.103      51  2.401e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
 </div>
 </section>
-<section id="comparar-modelos-anidados-8" class="level3" data-number="6.18">
-<h3 data-number="6.18" class="anchored" data-anchor-id="comparar-modelos-anidados-8"><span class="header-section-number">6.18</span> Comparar modelos anidados</h3>
+<section id="sin-el-2021" class="level3" data-number="1.13.9">
+<h3 data-number="1.13.9" class="anchored" data-anchor-id="sin-el-2021"><span class="header-section-number">1.13.9</span> Sin el 2021</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2023_1f_configural, fit_2023_1f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los datos excluyendo 2021</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>elri_inv_no_2021 <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ano <span class="sc">!=</span> <span class="st">"2021"</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para realizar análisis de invarianza longitudinal para un grupo específico</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>invariance_by_group_no_2021 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, group) {</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  data_group <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(indi <span class="sc">==</span> group)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>))</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>))</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">configural =</span> configural, <span class="at">metric =</span> metric, <span class="at">scalar =</span> scalar)</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar análisis de invarianza longitudinal para el grupo indígena sin 2021</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>inv_indi_no_2021 <span class="ot">&lt;-</span> <span class="fu">invariance_by_group_no_2021</span>(elri_inv_no_2021, <span class="st">"indi"</span>)</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar modelos anidados</span></span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza longitudinal - Indígena (sin 2021)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invarianza longitudinal - Indígena (sin 2021)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_indi_no_2021))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Scaled Chi-Squared Difference Test (method = "satorra.2000")
@@ -1063,11 +967,58 @@ lavaan NOTE:
     robust test that should be reported per model. A robust difference
     test is a function of two standard (not robust) statistics.
  
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2023_1f_configural 54         236.00                              
-fit_2023_1f_metric     62         247.25     7.5928       8     0.4742</code></pre>
+                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+models$configural  81         457.95                                  
+models$metric      97         520.22     39.087      16   0.001057 ** 
+models$scalar     131         664.43    307.207      34  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2023_1f_metric, fit_2023_1f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aunque el valor p (0.001057) es menor que el umbral convencional de 0.05, es considerablemente mayor que en el análisis que incluía 2021. Esto sugiere una mejora en la invarianza métrica, aunque todavía no se alcanza completamente. Invarianza Escalar: Sigue sin mantenerse, con un cambio en chi-cuadrado altamente significativo (p &lt; 2.2e-16).</p>
+<p>La exclusión de 2021 ha mejorado la invarianza métrica, aunque no lo suficiente para alcanzar el umbral convencional de no significación. Esto sugiere que las cargas factoriales son más estables entre 2016, 2018 y 2023, pero aún hay algunas diferencias significativas. Incluso sin 2021, sigue habiendo una falta significativa de invarianza escalar. Esto indica que los interceptos de los ítems varían considerablemente a lo largo del tiempo.</p>
+<ul>
+<li>Implicaciones</li>
+</ul>
+<p>El año 2021 parece haber contribuido a la falta de invarianza, pero no es la única fuente de variabilidad en la medición a lo largo del tiempo. Aunque hay una mejora en la estabilidad de las cargas factoriales (invarianza métrica), la interpretación de las puntuaciones del PHQ-9 sigue siendo inconsistente a lo largo de los años para el grupo indígena. Las comparaciones de medias latentes o puntuaciones observadas del PHQ-9 a lo largo del tiempo siguen siendo problemáticas, incluso excluyendo 2021.</p>
+<ul>
+<li><p>Recomendaciones</p>
+<ul>
+<li>Investigar qué ítems específicos están contribuyendo a la falta de invarianza escalar, ya que este es el problema más persistente.</li>
+<li>Considerar la posibilidad de invarianza parcial, donde solo algunos parámetros se mantienen iguales a lo largo del tiempo.</li>
+<li>Explorar factores culturales o contextuales que podrían estar influyendo en los cambios en la interpretación o respuesta al PHQ-9 a lo largo del tiempo en el grupo indígena, más allá de los eventos específicos de 2021.</li>
+<li>Evaluar si hay diferencias sistemáticas entre pares de años específicos (por ejemplo, 2016 vs.&nbsp;2018, 2018 vs.&nbsp;2023) que puedan estar contribuyendo a la falta de invarianza.</li>
+<li>Considerar la posibilidad de que el constructo de depresión, tal como lo mide el PHQ-9, pueda estar evolucionando conceptualmente a lo largo del tiempo para este grupo.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Asumiendo que ya tienes cargadas las bibliotecas necesarias y el modelo definido</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los datos excluyendo 2021</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>elri_inv_no_2021 <span class="ot">&lt;-</span> elri_inv <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ano <span class="sc">!=</span> <span class="st">"2021"</span>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para realizar análisis de invarianza longitudinal para un grupo específico</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>invariance_by_group_no_2021 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, group) {</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  data_group <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(indi <span class="sc">==</span> group)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>  metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>))</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>  scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_1f, <span class="at">data =</span> data_group, <span class="at">group =</span> <span class="st">"ano"</span>, <span class="at">estimator =</span> <span class="st">"WLSMV"</span>, <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>),</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>))</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">configural =</span> configural, <span class="at">metric =</span> metric, <span class="at">scalar =</span> scalar)</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar análisis de invarianza longitudinal para el grupo no indígena sin 2021</span></span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>inv_no_indi_no_2021 <span class="ot">&lt;-</span> <span class="fu">invariance_by_group_no_2021</span>(elri_inv_no_2021, <span class="st">"no_indi"</span>)</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparar modelos anidados</span></span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Invarianza longitudinal - No Indígena (sin 2021)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invarianza longitudinal - No Indígena (sin 2021)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">compare_models</span>(inv_no_indi_no_2021))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Scaled Chi-Squared Difference Test (method = "satorra.2000")
@@ -1077,69 +1028,16 @@ lavaan NOTE:
     robust test that should be reported per model. A robust difference
     test is a function of two standard (not robust) statistics.
  
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2023_1f_metric 62         247.25                              
-fit_2023_1f_scalar 79         248.56     4.9808      17     0.9978</code></pre>
+                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+models$configural  81         360.44                                  
+models$metric      97         439.97     49.475      16  2.779e-05 ***
+models$scalar     131         505.42    139.282      34  1.076e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
+
 </section>
-<section id="modelo-de-dos-factores-4" class="level3" data-number="6.19">
-<h3 data-number="6.19" class="anchored" data-anchor-id="modelo-de-dos-factores-4"><span class="header-section-number">6.19</span> Modelo de dos factores</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>fit_2023_2f_configural <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">data =</span> data_2023,</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>fit_2023_2f_metric <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2023,</span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>),</span>
-<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span>
-<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>fit_2023_2f_scalar <span class="ot">&lt;-</span> <span class="fu">cfa</span>(model_2f,</span>
-<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> data_2023,</span>
-<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group =</span> <span class="st">"indi"</span>,</span>
-<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a>                          <span class="at">group.equal =</span> <span class="fu">c</span>(<span class="st">"loadings"</span>, <span class="st">"thresholds"</span>),</span>
-<span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a>                          <span class="at">estimator =</span> <span class="st">"WLSMV"</span>,</span>
-<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="fu">paste0</span>(<span class="st">"g5_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="comparar-modelos-anidados-9" class="level3" data-number="6.20">
-<h3 data-number="6.20" class="anchored" data-anchor-id="comparar-modelos-anidados-9"><span class="header-section-number">6.20</span> Comparar modelos anidados</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2023_2f_configural, fit_2023_2f_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                       Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2023_2f_configural 52         232.68                              
-fit_2023_2f_metric     59         243.61      7.113       7     0.4172</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit_2023_2f_metric, fit_2023_2f_scalar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Scaled Chi-Squared Difference Test (method = "satorra.2000")
-
-lavaan NOTE:
-    The "Chisq" column contains standard test statistics, not the
-    robust test that should be reported per model. A robust difference
-    test is a function of two standard (not robust) statistics.
- 
-                   Df AIC BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
-fit_2023_2f_metric 59         243.61                              
-fit_2023_2f_scalar 75         244.51      4.027      16     0.9989</code></pre>
-</div>
-</div>
-
 </section>
 </section>
 
