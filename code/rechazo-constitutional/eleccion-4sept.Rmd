@@ -27,7 +27,11 @@ Plantear un modelo de regresión diferencia entre ser y no ser indígena, con va
 
 ```{r, message=FALSE, warning=FALSE}
 # Panel data.
-elri <- read_dta("/Users/matdknu/Dropbox/CIIR/Encuesta-ELRI/BBDD/BBDD_ELRI_LONG_4.0.dta") # cargar bbdd
+getwd()
+
+load("~/Dropbox/CIIR/Encuesta-ELRI/elri-code/data/BBDD_ELRI_LONG.RData")
+
+elri <- BBDD_ELRI_LONG
 
 # Comunas cercanas al conflicto.
 #09201 #Angol
@@ -77,7 +81,7 @@ elri <- elri %>% filter(ano == 2023) %>%  mutate(indigena_es = case_when(
                                          comuna
                                          )
 
-elri <- elri %>% filter(d14 <= 2 ) 
+elri <- elri %>% filter(d14 <= 2 ) #Filtrar por apruebo/rechazo.
 
 # Anreponer el 0
 
