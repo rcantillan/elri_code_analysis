@@ -1,0 +1,114 @@
+---
+title: "Votantes del rechazo"
+author: "Matías Deneken & Roberto Cantillán"
+date: " "
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(haven)
+library(readxl)
+library(stringi)
+library(stringr)
+```
+
+## Introducción
+
+¿Qué predice el voto del rechazo en las personas indígenas? 
+Existe evidencia de que los indígenas votaron igual o menor en la cantidad de apruebo que los chilenos no indígenas.
+
+¿Existen diferencias en que factores predicen el voto? 
+
+Plantear un modelo de regresión diferencia entre ser y no ser indígena, con variable dependiente el voto del 4 de octubre del 2022. 
+
+
+
+```{r, message=FALSE, warning=FALSE}
+# Panel data.
+elri <- read_dta("/Users/matdknu/Dropbox/CIIR/Encuesta-ELRI/BBDD/BBDD_ELRI_LONG_4.0.dta") # cargar bbdd
+
+# Comunas cercanas al conflicto.
+#09201 #Angol
+#08202 #Arauco
+#08203 #Canete
+#09121 #cholchol
+#09203	#curacautin
+#08205 #curanilahue
+#09104 #currarhue
+#09204 #Ercilla
+#09105 #Freire
+#10104 #Fresia
+#09106 #Galvarino
+#09107 #Gorbea
+#09108 #Lautaro
+#08201 #Lebu
+#09109 #Loncoche
+#09205 #Lonquimai
+#09111 #Nueva imperial
+#09112 #Padre de las casas
+#09101 #Temuco
+#08207 #Tirúa
+#09211 #Victoria
+#09119 #Vilcún
+
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+elri <- elri %>% filter(ano == 2023) %>%  mutate(indigena_es = case_when(
+    a1 >= 10 ~ "No indígena",
+    a1 <= 12   ~ "Indígena")) %>% select(d14, #Voto apruebo - rechazo
+                                        indigena_es, # ser indígena
+                                        d1_1, #Grados de conflcito con el estado
+                                        d1_2, # Grado de conflicto inter étnico. 
+                                        c2, #Cuanto confía en los chilenos no indígenas
+                                        c5, #Confianza hacia pueblos originarias
+                                        c23, #Diferencia justa o injusta entre indígenas
+                                        # d11, #Posición política. Mejor no. 
+                                        a6, #identificación con chile
+                                        a4, #identificacion pp.oo
+                                        d6_1, #identificación con la causa indígena
+                                        c7_2, #Frecuencia de contacto con no indígenas. 
+                                        c7_3, #experiencia positiva con no indígena
+                                         c14, #experiencia positiva con indígenas
+                                        c13, #Frecuencia de contacto con indígenas
+                                         comuna
+                                         )
+
+elri <- elri %>% filter(d14 <= 2 ) 
+
+# Anreponer el 0
+
+elri$comuna <- ifelse(nchar(elri$comuna) == 4, str_pad(elri$comuna, width = 5, pad = "0"), elri$comuna)
+
+
+# Suponiendo que tu dataframe se llama ELRI y la variable de interés es comuna
+# Crear un vector con los códigos de las comunas que están cerca del conflicto
+comunas_conflicto <- c("09201", "08202", "08203", "09121", "09203", "08205", "09104", "09204", 
+                       "09105", "10104", "09106", "09107", "09108", "08201", "09109", "09111", 
+                       "09205", "09112", "09101", "08207", "09211", "09119")
+
+# Crear la nueva variable cerca_conflicto
+elri$cerca_conflicto <- ifelse(elri$comuna %in% comunas_conflicto, "cerca_conflicto", "lejos_conflicto")
+
+# Ver el resultado
+print(elri)
+
+#elri %>% select(comuna, cerca_conflicto)
+
+
+```
+
+El descriptivo aprecia que las personas que viven cerca del conflicto tienden a votar más por el rechazo.
+
+
+```{r}
+elri %>% select(cerca_conflicto, indigena_es, d14) %>% group_by(indigena_es, cerca_conflicto, d14) %>% 
+  summarise(count = n()) %>%
+  mutate(percentage = count / sum(count) * 100)
+```
+
+Otra literatura sugiere que la frecuencia de contacto y  experiencia positiva podría influir. Personas con mayor experiencia positiva,  tenderían a votar a aprueba 
+
