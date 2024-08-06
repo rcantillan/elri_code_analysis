@@ -24,7 +24,6 @@ Existe evidencia de que los indígenas votaron igual o menor en la cantidad de a
 Plantear un modelo de regresión diferencia entre ser y no ser indígena, con variable dependiente el voto del 4 de octubre del 2022. 
 
 
-
 ```{r, message=FALSE, warning=FALSE}
 # Panel data.
 getwd()
