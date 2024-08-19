@@ -207,7 +207,7 @@ ggplot(LMmodelo, aes(x = factor(item), y = value, fill = factor(category))) +
   geom_col(position = "stack") +
   facet_wrap(~ state, ncol = 1, labeller = labeller(state = function(x) paste("Clase", x))) +
   scale_fill_viridis(discrete = TRUE, 
-                     alpha = .8,
+                     alpha = 1,
                      option = "D",
                      direction = -1,
                      name = "¿Se justifica?",
