@@ -226,7 +226,7 @@ ggplot(LMmodelo, aes(x = factor(item), y = value, fill = factor(category))) +
   )
 
 # Guardamos 
-ggsave("code/latent_violence/probabilidad_respuesta.png", width = 12, height = 10, dpi = 300)
+ggsave("code/latent_violence/probabilidad_respuesta1.jpg", width = 12, height = 10, dpi = 300)
 
 
 
