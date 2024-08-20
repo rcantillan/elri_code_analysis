@@ -2,7 +2,8 @@
 
 ## Análisis Invarianza ELRI --------------------------------
 library(semTools)
-library(influence.SEM)
+#install.packages("XQuartz")
+#library(influence.SEM)
 library(dplyr)
 library(lavaan)
 library(psych)   
@@ -139,6 +140,9 @@ plot(modelos, what="marginal")
 
 
 ## Modelo 3c
+## Variables que puedan ser interesantes. 
+
+
 modelo_3c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red ~ NULL,
                     latentFormula =~ urbano_rural + mujer + edad + c1 + c2 + d5_2 + d6_1 + c27_1 + c27_3,
                     index = c("folio","ola"),
@@ -171,6 +175,8 @@ modelo_4c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red
                   modManifest="LM",
                   seed = 1234)
 
+
+#Acá
 
 plot(modelo_4c, what = "CondProb")
 plot(modelo_3c, what="marginal")

@@ -1,0 +1,35 @@
+---
+title: "Paper"
+author: "Matías Deneken & Roberto Cantillán"
+date: "2024-08-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción 
+
+Relaciones interculturales
+
+Teoría del contacto intergrupales
+
+-- Posturas cognitivas
+-- Patrones de interacción 
+-- 
+* Estructura relacionales (Relaciones de contacto. Amigos, frecuencia de datos)
+
+* Estructura normativa (familia informal)
+
+## Desarrollo
+
+## Metodología
+
+
+## Resultados
+
+
+## Conclusiones 
+
+
