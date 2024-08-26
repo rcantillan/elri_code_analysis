@@ -1,8 +1,7 @@
-
-
 ## Análisis Invarianza ELRI --------------------------------
 library(semTools)
-library(influence.SEM)
+#install.packages("XQuartz")
+#library(influence.SEM)
 library(dplyr)
 library(lavaan)
 library(psych)   
@@ -139,6 +138,9 @@ plot(modelos, what="marginal")
 
 
 ## Modelo 3c
+## Variables que puedan ser interesantes. 
+
+
 modelo_3c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red ~ NULL,
                     latentFormula =~ urbano_rural + mujer + edad + c1 + c2 + d5_2 + d6_1 + c27_1 + c27_3,
                     index = c("folio","ola"),
@@ -172,9 +174,24 @@ modelo_4c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red
                   seed = 1234)
 
 
+#Acá
+
 plot(modelo_4c, what = "CondProb")
 plot(modelo_3c, what="marginal")
 plot(modelo_3c, what = "transitions")
+
+
+# Abrir un dispositivo gráfico para guardar el primer gráfico
+png("code/latent_violence/marginal_modelo_3c.png", width = 800, height = 600)
+plot(modelo_3c, what="marginal")
+dev.off()  # Cerrar el dispositivo gráfico
+
+
+# Abrir un dispositivo gráfico para guardar el segundo gráfico
+png("code/latent_violence/transitions_modelo_3c.png", width = 800, height = 600)
+plot(modelo_3c, what = "transitions")
+dev.off()  # Cerrar el dispositivo gráfico
+
 
 
 # plots 
