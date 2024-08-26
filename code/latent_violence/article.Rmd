@@ -3,6 +3,7 @@ title: "Paper"
 author: "Matías Deneken & Roberto Cantillán"
 date: "2024-08-20"
 output: html_document
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -11,13 +12,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introducción
 
-Relaciones interculturales
+-   Teorizar más soft ¿Qué es lo que esperamos?
 
-}Teoría del contacto intergrupales
+Desde el período de la conquista, Chile se ha enfrascado en un conflicto intérétnico, a saber, chilenos no indígenas contra indígenas. La evidencia histórica la ha constatado como relación dinámica, pues se señala un proceso de aculturación de indígenas a las prácticas occidentales de Chile y la adquisición de prácticas indígenas a la identidad chilena; cómo también nutridad de violencia que ha enfrentado a ambos grupos. Este carácter dual es lo que ha generado un conflicto que , desde diferentes puntos de vista, no ha encontrado una solución.
+
+La historia reciente ha constatado lo que se conoce como el *conflicto mapuche*, nominación que alude a dinámicas de violencia existentes entre dicho pueblo con el Estado. De igual forma, se ha evidenciado las resistencia al extractivismo de las mineras en el territorio andino del norte que ha generado múltiples divisiones de un conflicto.
+
+Las contiendas mencionadas puede ser explicada a partir del marco de las relaciones intergrupales ha puesto especial atención (@tajfel1982). La literatura define
+
+Teoría del contacto intergrupalesanifiesta cuando la identidad de grupo se convierte en un factor determinante en la manera en que los individuos se relacionan con miembros de otros grupos.
 
 -- Posturas cognitivas -- Patrones de interacción -- \* Estructura relacionales (Relaciones de contacto. Amigos, frecuencia de datos)
 
 -   Estructura normativa (familia informal)
+
+Violencia normativa.
+
+Violencia del cambio socia.
+
+El cambio ha sido más desde el apoyo de la violencia indígena hacia el no apoyo de ninguna de las violencias.
 
 ## Desarrollo
 
@@ -61,7 +74,19 @@ d6_1: identificación cuasa indígena
 
 ## Resultado
 
+-   Probabilidad de transición (Y)
+
+-   Ilustrar qué factores predicen.
+
 ### Transiciones entre las clases
+
+-   Caracterizar a los grupos en los distintos tiempos.
+
+-   Lógica inductiva ¿Qué es lo que podemos esperar según la teoría?
+
+    -   Quiénes se pueden ajustar a la teoría.
+
+-   
 
 ![](code/transitions_modelo_3c.png)
 
@@ -74,3 +99,5 @@ d6_1: identificación cuasa indígena
 ![](code/latent_violence/probabilidad_respuesta1.jpg)
 
 ## Conclusiones
+
+# Referencias
