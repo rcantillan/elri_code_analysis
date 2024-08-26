@@ -176,7 +176,7 @@ modelo_4c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red
 
 #Acá
 
-plot(modelo_4c, what = "CondProb")
+plot(modelo_3c, what = "CondProb")
 plot(modelo_3c, what="marginal")
 plot(modelo_3c, what = "transitions")
 
@@ -211,6 +211,9 @@ ggplot(LMmodelo, aes(x = factor(item), y = value, fill = factor(category))) +
         legend.position = "right")
 
 
+
+library(gridExtra)
+grid.arrange()
 
 # Creamos un vector con las descripciones de los ítems
 item_descriptions <- c(
