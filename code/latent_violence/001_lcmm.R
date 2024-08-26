@@ -18,6 +18,7 @@ library(LMest)
 library(panelr)
 library(tidyverse)
 library(viridis)
+library(xtable)
 
 # limpiar espacio
 cat("\014")
@@ -158,6 +159,44 @@ modelo_3c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red
 plot(modelo_3c, what = "CondProb") #transitions
 plot(modelo_3c, what="marginal")
 plot(modelo_3c, what = "transitions")
+
+## Resultados de regresión multinomial para describir grupos.
+Be<-as.data.frame(modelo_3c$Be)
+seBe<-as.data.frame(modelo_3c$seBe)
+z <- modelo_3c$Be/modelo_3c$seBe
+p <- (1 - pnorm(abs(z), 0, 1))*2 # two-tailed z test
+
+## Tablas
+options(scipen=999)
+print(xtable(Be, type = "latex"), file = "long_latent_class/multinom_coeff.tex")
+print(xtable(p, type = "latex"), file = "long_latent_class/multinom_pvaluestex")
+
+# Probabilidades iniciales 
+plot(modelo3, what="CondProb")
+
+
+# bootstrap
+mboot <- bootstrap(modelo_3c, B = 1000, seed = 172)
+
+
+# Probabilidades de transición
+# Probabilidades individuales de transición. 
+trans_ind <- modelo_3c$V   
+
+tras_ind1 <- trans_ind[, , 1]
+colnames(tras_ind1) <- c("t1_t2_clase1", "t1_t2_clase2", "t1_t2_clase3")
+tras_ind1 <- as_tibble(tras_ind1)
+
+tras_ind2 <- trans_ind[, , 2]
+colnames(tras_ind2) <- c("t1_t3_clase1", "t1_t3_clase2", "t1_t3_clase3")
+tras_ind2 <- as_tibble(tras_ind2)
+
+tras_ind3 <- trans_ind[, , 3]
+colnames(tras_ind3) <- c("t2_t3_clase1", "t2_t3_clase2", "t2_t3_clase3")
+tras_ind3 <- as_tibble(tras_ind3)
+
+
+
 
 ## Modelo 4c
 modelo_4c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red ~ NULL,
