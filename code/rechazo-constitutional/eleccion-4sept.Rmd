@@ -3,33 +3,46 @@ title: "Votantes del rechazo"
 author: "Matías Deneken & Roberto Cantillán"
 date: " "
 output: pdf_document
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Librerías
+```{r, message=FALSE}
 library(tidyverse)
 library(haven)
 library(readxl)
 library(stringi)
 library(stringr)
+library(here)
+library(tidymodels)
+library(broom)
+library(kableExtra)
+library(marginaleffects)
+library(knitr)
+library(stargazer)
+library(texreg)
 ```
+
 
 ## Introducción
 
-¿Qué predice el voto del rechazo en las personas indígenas? 
-Existe evidencia de que los indígenas votaron igual o menor en la cantidad de apruebo que los chilenos no indígenas.
+El plebiscito constitucional chileno del 4 de octubre de 2022 reveló un patrón de votación inesperado entre la población indígena. Contrario a las expectativas, los votantes indígenas no mostraron un apoyo significativamente mayor a la propuesta constitucional en comparación con los votantes no indígenas. Este fenómeno plantea preguntas cruciales sobre los factores que influyen en las decisiones electorales de las comunidades indígenas en Chile.
+Nuestra investigación se centra en dos preguntas principales:
 
-¿Existen diferencias en que factores predicen el voto? 
+- ¿Qué factores predicen el voto de rechazo entre las personas indígenas?
+- ¿Existen diferencias significativas entre los predictores del voto para poblaciones indígenas y no indígenas?
 
-Plantear un modelo de regresión diferencia entre ser y no ser indígena, con variable dependiente el voto del 4 de octubre del 2022. 
+Para abordar estas cuestiones, proponemos un análisis comparativo utilizando modelos de regresión logística. Nuestro objetivo es identificar las variables socioeconómicas, culturales y políticas que tienen mayor influencia en la decisión de voto, comparando específicamente entre votantes indígenas y no indígenas.
 
-
+## Datos
 ```{r, message=FALSE, warning=FALSE}
 # Panel data.
 getwd()
-
-load("~/Dropbox/CIIR/Encuesta-ELRI/elri-code/data/BBDD_ELRI_LONG.RData")
-
+load(here("data/BBDD_ELRI_LONG.RData"))
 elri <- BBDD_ELRI_LONG
 
 # Comunas cercanas al conflicto.
@@ -55,28 +68,39 @@ elri <- BBDD_ELRI_LONG
 #08207 #Tirúa
 #09211 #Victoria
 #09119 #Vilcún
-
 ```
 
-
+## Preparamos datos I
 ```{r, message=FALSE, warning=FALSE}
-elri <- elri %>% filter(ano == 2023) %>%  mutate(indigena_es = case_when(
-    a1 >= 10 ~ "No indígena",
-    a1 <= 12   ~ "Indígena")) %>% select(d14, #Voto apruebo - rechazo
-                                        indigena_es, # ser indígena
-                                        d1_1, #Grados de conflcito con el estado
-                                        d1_2, # Grado de conflicto inter étnico. 
-                                        c2, #Cuanto confía en los chilenos no indígenas
-                                        c5, #Confianza hacia pueblos originarias
-                                        c23, #Diferencia justa o injusta entre indígenas
-                                        # d11, #Posición política. Mejor no. 
-                                        a6, #identificación con chile
-                                        a4, #identificacion pp.oo
-                                        d6_1, #identificación con la causa indígena
-                                        c7_2, #Frecuencia de contacto con no indígenas. 
-                                        c7_3, #experiencia positiva con no indígena
+elri <- elri %>% filter(ano == 2023) %>% 
+    dplyr::mutate (mujer = case_when(g2 == 1 ~ "0",
+                                   g2 == 2 ~ "1")) %>% 
+  dplyr::mutate (edad = case_when(g18 %in% 18:24 ~ "18_24",
+                                  g18 %in% 25:34 ~ "25_34",
+                                  g18 %in% 35:44 ~ "35_44",
+                                  g18 %in% 45:54 ~ "45_54",
+                                  g18 %in% 55:64 ~ "55_64", 
+                                  g18 %in% 65:89 ~ "65+")) %>% 
+  mutate(indigena_es = case_when(a1 >= 10 ~ "No indígena",
+                                 a1 <= 12   ~ "Indígena")) %>% 
+                                  select(edad,
+                                         mujer,
+                                         urbano_rural,
+                                         d14, #Voto apruebo - rechazo
+                                         indigena_es, # ser indígena
+                                         d1_1, #Grados de conflcito con el estado
+                                         d1_2, # Grado de conflicto inter étnico. 
+                                         c2, #Cuanto confía en los chilenos no indígenas
+                                         c5, #Confianza hacia pueblos originarias
+                                         c23, #Diferencia justa o injusta entre indígenas
+                                         # d11, #Posición política. Mejor no. 
+                                         a6, #identificación con chile
+                                         a4, #identificacion pp.oo
+                                         d6_1, #identificación con la causa indígena
+                                         c7_2, #Frecuencia de contacto con no indígenas. 
+                                         c7_3, #experiencia positiva con no indígena
                                          c14, #experiencia positiva con indígenas
-                                        c13, #Frecuencia de contacto con indígenas
+                                         c13, #Frecuencia de contacto con indígenas
                                          comuna
                                          )
 
@@ -84,34 +108,323 @@ elri <- elri %>% filter(d14 <= 2 ) #Filtrar por apruebo/rechazo.
 
 # Anreponer el 0
 
-elri$comuna <- ifelse(nchar(elri$comuna) == 4, str_pad(elri$comuna, width = 5, pad = "0"), elri$comuna)
+elri$comuna <- ifelse(nchar(elri$comuna) == 4, 
+                      str_pad(elri$comuna, 
+                              width = 5, pad = "0"), 
+                      elri$comuna)
 
 
 # Suponiendo que tu dataframe se llama ELRI y la variable de interés es comuna
 # Crear un vector con los códigos de las comunas que están cerca del conflicto
-comunas_conflicto <- c("09201", "08202", "08203", "09121", "09203", "08205", "09104", "09204", 
-                       "09105", "10104", "09106", "09107", "09108", "08201", "09109", "09111", 
-                       "09205", "09112", "09101", "08207", "09211", "09119")
+comunas_conflicto <- c("09201", "08202", "08203", "09121", "09203", "08205", 
+                       "09104", "09204", "09105", "10104", "09106", "09107", 
+                       "09108", "08201", "09109", "09111", "09205", "09112", 
+                       "09101", "08207", "09211", "09119")
 
 # Crear la nueva variable cerca_conflicto
-elri$cerca_conflicto <- ifelse(elri$comuna %in% comunas_conflicto, "cerca_conflicto", "lejos_conflicto")
+elri$cerca_conflicto <- ifelse(elri$comuna %in% comunas_conflicto, 
+                               "cerca_conflicto", "lejos_conflicto")
 
 # Ver el resultado
-print(elri)
-
+#print(elri)
 #elri %>% select(comuna, cerca_conflicto)
-
-
 ```
 
 El descriptivo aprecia que las personas que viven cerca del conflicto tienden a votar más por el rechazo.
 
-
-```{r}
-elri %>% select(cerca_conflicto, indigena_es, d14) %>% group_by(indigena_es, cerca_conflicto, d14) %>% 
+## plot
+```{r, warning=FALSE, message=FALSE}
+elri %>% select(cerca_conflicto, indigena_es, d14) %>% 
+  group_by(indigena_es, cerca_conflicto, d14) %>% 
   summarise(count = n()) %>%
-  mutate(percentage = count / sum(count) * 100)
+  mutate(percentage = count / sum(count) * 100) %>% 
+ggplot(aes(x = factor(d14), y = percentage, fill = indigena_es)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ cerca_conflicto, 
+             labeller = labeller(cerca_conflicto = c("cerca_conflicto" = "Cerca del conflicto", 
+                                                     "lejos_conflicto" = "Lejos del conflicto"))) +
+  scale_fill_manual(values = c("Indígena" = "#FFA500", "No indígena" = "#4682B4")) +
+  scale_x_discrete(labels = c("1" = "Apruebo", "2" = "Rechazo")) +
+  labs(title = "Votación por condición indígena y cercanía al conflicto",
+       x = "Opción de voto",
+       y = "Porcentaje",
+       fill = "Condición") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0.5, face = "bold"),
+        axis.title = element_text(face = "bold"),
+        strip.text = element_text(face = "bold")) +
+  geom_text(aes(label = sprintf("%.1f%%", percentage)), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, 
+            size = 3)
 ```
 
+
+
 Otra literatura sugiere que la frecuencia de contacto y  experiencia positiva podría influir. Personas con mayor experiencia positiva,  tenderían a votar a aprueba 
+
+
+## Preparamos datos II
+```{r}
+elri_prep <- elri %>%
+  # Convertir "88" y "99" a NA en todas las columnas
+  mutate(across(everything(), ~if_else(. %in% c("88", "99"), NA_character_, 
+                                       as.character(.)))) %>%
+  # Convertir variables de carácter a factor
+  mutate(across(where(is.character), as.factor)) %>%
+  # Convertir d14 a factor y recodificar
+  mutate(d14 = as.factor(d14)) %>%
+  mutate(d14 = fct_recode(d14, "Apruebo" = "1", "Rechazo" = "2")) %>%
+  # Convertir variables sociodemográficas a factor
+  mutate(
+    mujer = as.factor(mujer),
+    edad = factor(edad, levels = c("18_24", "25_34", "35_44", "45_54", "55_64", "65+")),
+    urbano_rural = as.factor(urbano_rural)
+  ) %>%
+  # Convertir otras variables predictoras a factores ordenados
+  mutate(across(c(d1_1, d1_2, c2, c5, c23, a6, a4, d6_1, c7_2, c7_3, c13, c14), 
+                ~factor(.)))
+
+# El resto del código permanece igual
+# Función para crear y ajustar modelo
+fit_logistic <- function(data, formula) {
+  logistic_model <- logistic_reg() %>%
+    set_engine("glm")
+  
+  workflow <- workflow() %>%
+    add_model(logistic_model) %>%
+    add_formula(formula)
+  
+  fit(workflow, data)
+}
+
+# Función para extraer y formatear resultados
+extract_results <- function(model) {
+  model %>%
+    extract_fit_parsnip() %>%
+    tidy() %>%
+    mutate(odds_ratio = exp(estimate),
+           lower_ci = exp(estimate - 1.96 * std.error),
+           upper_ci = exp(estimate + 1.96 * std.error)) %>%
+    select(term, estimate, odds_ratio, lower_ci, upper_ci, p.value)
+}
+```
+
+
+## Modelos simples (sin teracciones.)
+```{r}
+# 1. Modelo base con variables sociodemográficas
+model_base <- fit_logistic(elri_prep, d14 ~ mujer + edad + urbano_rural)
+
+# 2. Modelo con variables de identidad y confianza
+model_identity <- fit_logistic(elri_prep, d14 ~ mujer + edad + urbano_rural + 
+                                 indigena_es + a6 + a4 + d6_1 + c2 + c5)
+
+# 3. Modelo con variables de conflicto
+model_conflict <- fit_logistic(elri_prep, d14 ~ mujer + edad + urbano_rural +
+                                 d1_1 + d1_2 + cerca_conflicto)
+
+# 4. Modelo con variables de contacto intergrupal
+model_contact <- fit_logistic(elri_prep, d14 ~ mujer + edad + urbano_rural + 
+                                c7_2 + c7_3 + c13 + c14)
+
+# Extraer y mostrar resultados
+results_base <- extract_results(model_base)
+results_identity <- extract_results(model_identity)
+results_conflict <- extract_results(model_conflict)
+results_contact <- extract_results(model_contact)
+
+# Mostrar resultados
+#print("Modelo Base:")
+#print(results_base)
+#
+#print("Modelo de Identidad y Confianza:")
+#print(results_identity)
+#
+#print("Modelo de Conflicto:")
+#print(results_conflict)
+#
+#print("Modelo de Contacto Intergrupal:")
+#print(results_contact)
+```
+
+
+## Tabla
+```{r, results = 'asis'}
+texreg(list(model_identity, model_conflict, model_contact),
+       float.pos = "H", return.string = TRUE, bold = 0.05, stars = 0,
+       custom.note = "Coefficients with $p < 0.05$ in \\textbf{bold}.",
+       digits = 3, leading.zero = FALSE, single.row = TRUE)
+```
+
+
+## Modelos con interacciones (indigenas y no indígena * variables indep. de interés) y efectos marginales 
+```{r}
+
+# Función para ajustar modelos con interacciones usando glm
+fit_interaction_model <- function(data, formula) {
+  glm(formula, data = data, family = binomial(link = "logit"))
+}
+
+# Ajustar modelos con interacciones
+demographic_vars <- c("mujer", "edad", "urbano_rural")
+
+formula_identity <- as.formula(paste("d14 ~", 
+                                     paste(demographic_vars, collapse = " + "), "+",
+                                     "indigena_es * (a6 + a4 + d6_1 + c2 + c5)"))
+
+formula_conflict <- as.formula(paste("d14 ~", 
+                                     paste(demographic_vars, collapse = " + "), "+",
+                                     "indigena_es * (d1_1 + d1_2 + cerca_conflicto)"))
+
+formula_contact <- as.formula(paste("d14 ~", 
+                                    paste(demographic_vars, collapse = " + "), "+",
+                                    "indigena_es * (c7_2 + c7_3 + c13 + c14)"))
+
+model_identity <- fit_interaction_model(elri_prep, formula_identity)
+model_conflict <- fit_interaction_model(elri_prep, formula_conflict)
+model_contact <- fit_interaction_model(elri_prep, formula_contact)
+```
+
+
+
+```{r}
+# Función para calcular efectos marginales manualmente
+calculate_manual_margins <- function(model, var_name) {
+  # Extraer datos del modelo
+  data <- model$model
+  
+  # Crear un dataframe con todas las combinaciones de niveles
+  levels_indigena <- levels(data$indigena_es)
+  levels_var <- levels(data[[var_name]])
+  grid <- expand.grid(indigena_es = levels_indigena, var = levels_var)
+  names(grid)[2] <- var_name
+  
+  # Añadir valores promedio para otras variables
+  for (col in names(data)) {
+    if (!(col %in% c("indigena_es", var_name, "d14"))) {
+      if (is.factor(data[[col]])) {
+        grid[[col]] <- levels(data[[col]])[1]  # Usar el primer nivel para factores
+      } else {
+        grid[[col]] <- mean(data[[col]], na.rm = TRUE)
+      }
+    }
+  }
+  
+  # Predecir probabilidades
+  grid$prob <- predict(model, newdata = grid, type = "response")
+  
+  # Calcular efectos marginales
+  grid %>%
+    group_by(indigena_es) %>%
+    mutate(effect = prob - lag(prob)) %>%
+    filter(!is.na(effect)) %>%
+    mutate(variable = var_name,
+           level = !!sym(var_name)) %>%
+    select(indigena_es, variable, level, effect)
+}
+
+# Calcular efectos marginales para todas las variables de interés
+calculate_all_margins <- function(model) {
+  vars_of_interest <- names(model$model)[!(names(model$model) %in% c("d14", "mujer", "edad", "urbano_rural", "indigena_es"))]
+  margins_list <- lapply(vars_of_interest, function(var) calculate_manual_margins(model, var))
+  do.call(rbind, margins_list)
+}
+
+# Función para crear el gráfico
+plot_margins <- function(margins, title) {
+  margins$y_axis <- paste(margins$variable, margins$level, sep = ": ")
+  
+  ggplot(margins, aes(x = effect, y = y_axis, color = indigena_es)) +
+    geom_point(position = position_dodge(width = 0.5), size = 3) +
+    geom_errorbar(aes(xmin = effect - 0.1, xmax = effect + 0.1),  # Ajusta estos valores según sea necesario
+                  position = position_dodge(width = 0.5), width = 0.2) +
+    scale_color_manual(values = c("Indígena" = "#FF6B6B", "No indígena" = "#4ECDC4"),
+                       name = "Población") +
+    labs(title = title,
+         x = "Efecto marginal",
+         y = "Variables y niveles") +
+    theme_minimal() +
+    theme(legend.position = "bottom",
+          panel.grid.minor = element_blank(),
+          axis.text.y = element_text(hjust = 1),
+          plot.title = element_text(hjust = 0.5, face = "bold")) +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "red")
+}
+
+# Aplicar a cada modelo
+margins_identity <- calculate_all_margins(model_identity)
+plot_identity <- plot_margins(margins_identity, "Efectos Marginales - Modelo de Identidad y Confianza")
+print(plot_identity)
+
+margins_conflict <- calculate_all_margins(model_conflict)
+plot_conflict <- plot_margins(margins_conflict, "Efectos Marginales - Modelo de Conflicto")
+print(plot_conflict)
+
+margins_contact <- calculate_all_margins(model_contact)
+plot_contact <- plot_margins(margins_contact, "Efectos Marginales - Modelo de Contacto Intergrupal")
+print(plot_contact)
+```
+
+
+
+```{r}
+
+# Función para extraer y formatear resultados
+extract_results <- function(model) {
+  tidy(model) %>%
+    mutate(odds_ratio = exp(estimate),
+           lower_ci = exp(estimate - 1.96 * std.error),
+           upper_ci = exp(estimate + 1.96 * std.error)) %>%
+    select(term, estimate, odds_ratio, lower_ci, upper_ci, p.value)
+}
+
+# Extraer resultados de los modelos
+results_identity <- extract_results(model_identity)
+results_conflict <- extract_results(model_conflict)
+results_contact <- extract_results(model_contact)
+
+# Mostrar resultados
+print("Modelo de Identidad y Confianza:")
+results_identity
+print("Modelo de Conflicto:")
+results_conflict
+print("Modelo de Contacto Intergrupal:")
+results_contact
+```
+
+
+
+## Tabla II (interacciones)
+```{r, results = 'asis'}
+#texreg(list(model_identity, model_conflict, model_contact),
+#       float.pos = "H", return.string = TRUE, bold = 0.05, stars = 0,
+#       custom.note = "Coefficients with $p < 0.05$ in \\textbf{bold}.",
+#       digits = 3, leading.zero = FALSE, single.row = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
