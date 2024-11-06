@@ -90,7 +90,12 @@ elri <- elri %>% filter(ano == 2023) %>%
                                          indigena_es, # ser indígena
                                          d1_1, #Grados de conflcito con el estado
                                          d1_2, # Grado de conflicto inter étnico. 
+                                         d1_3, #Conflicto con las empresas.
+                                         d2_1,
+                                         d2_3,
+                                         c1,
                                          c2, #Cuanto confía en los chilenos no indígenas
+                                         c4,
                                          c5, #Confianza hacia pueblos originarias
                                          c23, #Diferencia justa o injusta entre indígenas
                                          # d11, #Posición política. Mejor no. 
@@ -101,6 +106,8 @@ elri <- elri %>% filter(ano == 2023) %>%
                                          c7_3, #experiencia positiva con no indígena
                                          c14, #experiencia positiva con indígenas
                                          c13, #Frecuencia de contacto con indígenas
+                                         c35, 
+                                         c36, 
                                          comuna
                                          )
 
@@ -183,8 +190,11 @@ elri_prep <- elri %>%
     urbano_rural = as.factor(urbano_rural)
   ) %>%
   # Convertir otras variables predictoras a factores ordenados
-  mutate(across(c(d1_1, d1_2, c2, c5, c23, a6, a4, d6_1, c7_2, c7_3, c13, c14), 
-                ~factor(.)))
+mutate(across(c(d1_1, d1_2, d1_3, d2_1, d2_3, #Conflicto
+                c1, c2, c4, c5, c23, #Intergrupal
+                c7_2, c7_3, c13, c14,
+                 c35, c36, a6, a4, ), 
+              ~as.numeric(.)))
 
 # El resto del código permanece igual
 # Función para crear y ajustar modelo
@@ -223,7 +233,7 @@ model_identity <- fit_logistic(elri_prep, d14 ~ mujer + edad + urbano_rural +
 
 # 3. Modelo con variables de conflicto
 model_conflict <- fit_logistic(elri_prep, d14 ~ mujer + edad + urbano_rural +
-                                 d1_1 + d1_2 + cerca_conflicto)
+                                 d1_1 + d1_2 + d1_3 + cerca_conflicto)
 
 # 4. Modelo con variables de contacto intergrupal
 model_contact <- fit_logistic(elri_prep, d14 ~ mujer + edad + urbano_rural + 
@@ -276,7 +286,7 @@ formula_identity <- as.formula(paste("d14 ~",
 
 formula_conflict <- as.formula(paste("d14 ~", 
                                      paste(demographic_vars, collapse = " + "), "+",
-                                     "indigena_es * (d1_1 + d1_2 + cerca_conflicto)"))
+                                     "indigena_es * (d1_1 + d1_2 + d1_3)"))
 
 formula_contact <- as.formula(paste("d14 ~", 
                                     paste(demographic_vars, collapse = " + "), "+",
@@ -407,6 +417,26 @@ results_contact
 
 
 
+```{r}
+library(dplyr)
+
+# Añadir una columna para identificar el modelo y combinar los resultados
+results_identity <- results_identity %>% mutate(Modelo = "Modelo de Identidad y Confianza")
+results_conflict <- results_conflict %>% mutate(Modelo = "Modelo de Conflicto")
+results_contact <- results_contact %>% mutate(Modelo = "Modelo de Contacto Intergrupal")
+
+# Unir todos los modelos en un solo dataframe
+results_summary <- bind_rows(results_identity, results_conflict, results_contact)
+
+# Seleccionar y reordenar las columnas de interés
+results_summary <- results_summary %>%
+  select(Modelo, term, estimate, odds_ratio, p.value) %>%
+  arrange(Modelo, term)
+
+# Mostrar el resumen
+print(results_summary)
+
+```
 
 
 
