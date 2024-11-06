@@ -1,7 +1,4 @@
-## Análisis Invarianza ELRI --------------------------------
-library(semTools)
-#install.packages("XQuartz")
-#library(influence.SEM)
+
 library(dplyr)
 library(lavaan)
 library(psych)   
@@ -46,7 +43,7 @@ subset_data <- BBDD_ELRI_LONG %>%
                                   g18 %in% 55:64 ~ "55_64", 
                                   g18 %in% 65:89 ~ "65+")) %>% 
   select("folio", "ola", "d3_1", "d3_2", "d4_2", "d4_3", "c1", "c2", "d5_1", "d5_2", "d6_1", "c27_1", "c27_3",
-         "urbano_rural", "indi", "mujer", "edad")
+         "urbano_rural", "mujer", "edad")
 
 # Asumiendo que subset_data ya está cargado
 # Convertir 'folio' a factor para usarlo como identificador de sujeto
@@ -105,12 +102,26 @@ subset_data %>% frq(ola)
 
 print(colSums(is.na(subset_data)))
 table(subset_data$folio, subset_data$ola)
+subset_data$d5_1[is.na(subset_data$d5_1)] <- median(subset_data$d5_1, na.rm = TRUE) # imputar un valor NA
 subset_data_clean <- subset_data[complete.cases(subset_data), ]
+subset_data_clean <- na.omit(subset_data)
+
+
+
 
 # Modelo -----------------------------------------------------------------------
 ## Modelo 1
 modelos <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red ~ NULL,
-                  latentFormula =~ urbano_rural + mujer + edad + c1 + c2 + d5_2 + d6_1 + c27_1 + c27_3,
+                  latentFormula =~ urbano_rural + 
+                    mujer +
+                    edad + 
+                    c1 + 
+                    c2 + 
+                    d5_1 +
+                    d5_2 + 
+                    d6_1 + 
+                    c27_1 +
+                    c27_3,
                   index = c("folio","ola"),
                   output = TRUE,
                   out_se = TRUE,
@@ -119,10 +130,8 @@ modelos <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red ~
                   k = 1:6,
                   start = 0,
                   modBasic = 1,
-                  modManifest="LM",
+                  modManifest="FM",
                   seed = 1234)
-
-
 
 #`modBasic` model on the transition probabilities: default 0 for time-heterogeneous transition
 #matrices, 1 for time-homogeneous transition matrices, 2 for partial time homogeneity based 
@@ -150,9 +159,10 @@ modelo_3c <-  lmest(responsesFormula = d3_1_red + d3_2_red + d4_2_red + d4_3_red
                     paramLatent = "multilogit",
                     data = subset_data,
                     k = 3,
+                  
                     start = 0,
                     modBasic = 1,
-                    modManifest="LM",
+                    modManifest="FM",
                     seed = 1234)
 
 
